@@ -62,7 +62,7 @@ function register() {
     })
 }
 
-function login() {
+function login () {
   // Get all our input fields
   email = document.getElementById('email').value
   password = document.getElementById('password').value
@@ -73,9 +73,10 @@ function login() {
     return
     // Don't continue running the code
   }
+    
 
   auth.signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
+  .then(function() {
     // Declare user variable
     var user = auth.currentUser
 
@@ -103,6 +104,7 @@ function login() {
   })
 }
 
+
 // Validate Functions
 function validate_email(email) {
   expression = /^[^@]+@\w+(\.\w+)+\w$/
@@ -124,21 +126,22 @@ function validate_password(password) {
   }
 }
 
-/*Constant because they will not change*/
-const loginForm = document.getElementById("login-form");
-const loginButton = document.getElementById("login-form-submit");
-const loginErrorMsg = document.getElementById("login-error-msg");
-/*"e" mouse event that represents the click*/
-loginButton.addEventListener("click", (e) => {
-  e.preventDefault();/*This prevents submission*/
-  const username = loginForm.username.value;
-  const password = loginForm.password.value;
-  /*if (username === && password === ){
-    alert("Success");
-    location.reload(); // go to our main menu
-  
-  }else {
-    loginErrorMsg.style.opacity = 1;
-  }*/
-  
-})
+///*
+///*Constant because they will not change*/
+//const loginForm = document.getElementById("login-form");
+//const loginButton = document.getElementById("login-form-submit");
+//const loginErrorMsg = document.getElementById("login-error-msg");
+///*"e" mouse event that represents the click*/
+//loginButton.addEventListener("click", (e) => {
+//  e.preventDefault();/*This prevents submission*/
+//  const username = loginForm.username.value;
+//  const password = loginForm.password.value;
+//  /*if (username === && password === ){
+//    alert("Success");
+//    location.reload(); // go to our main menu
+//  
+//  }else {
+//    loginErrorMsg.style.opacity = 1;
+//  }*/
+//  
+//})-->*/
