@@ -11,7 +11,7 @@ body{
   display: grid;
   justify-items: center;
   align-items: center;
-  background-color: #D0B49F;
+  background-color: #FFFDFA;
   font-size: 45px;
 }
 /*Using a (#) because the name is an id
@@ -24,6 +24,63 @@ body{
   align-items: center;
     
 }
+
+/*Progress Bar*/
+/*Styling the progress bar*/
+.Section{
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 10px; /*50px*/
+}
+/*# because the id is for ProgressBar*/
+#ProgressBar{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 400px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+/*The number step the user is on*/
+.step{
+  text-align: center;
+}
+.text{
+  margin-bottom: 10px;
+  /*word-spacing: 1400px;*/
+  color: #0011ff;
+}
+/*The look of the step which is the circular button*/
+.bullets{
+  border: 1px solid #0011ff;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%; /*border around step*/
+  color: #0011ff;
+  display: inline-block;
+  position: relative;
+  transition: background-color 500ms;
+  line-height: 20px; /*Height of numbers within the circle*/
+}
+/*Look of the step when it is completed, it will be filled in with blue as the background color*/
+.bullets.completed{
+  color: white;
+  background-color: #0011ff;
+}
+/*The compeleted color of the button after they pass this step*/
+.bullets.completed::after{
+  content: "";
+  position: absolute;
+  right: -105px; /*-105*/
+  bottom: 10px;
+  height: 5px;
+  width: 105px; /**105 colors button*/
+  background-color: #0011ff;
+}
+
+
 
 /*Create the dimensions of the box around it, being the holder*/
 #login-error-msg-holder{

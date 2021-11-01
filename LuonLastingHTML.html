@@ -15,6 +15,8 @@ Also acts as references to the CSS and Javascript files-->
     </head>
     <!--Body is the information that will be visible to the user -->
     <body>
+        
+
       <main id ="main-holder">
         <h1 id = "loginheader">Welcome!</h1>
         <div id = "login-error-msg-holder">
@@ -25,11 +27,45 @@ Also acts as references to the CSS and Javascript files-->
           <!-- Creating input fields-->
           <input type="email" id="email" placeholder="Email" required>
           <input type="password" id="password" placeholder="Password" required>
-      <!-- <input type = "submit" value="Login" id="login-form-submit"> -->
+
             <button onclick="login()">Login</button>
-            <a href="Register.html">Register</a>
-         <!-- <input type = "submit" value="SignUp" id="signup-form-submit"> -->
+            <!--<a href onclick="register()">Register Artist</a>-->
+            <a href="Register.html">Register Artist</a>
         </form>
+          
+          <div class = "Section">
+    <!--<h1>Main Page</h1>-->
+    <div id="ProgressBar">
+      <div class="step">
+        <p class="text">Client Information</p>
+        <div class="bullets">1</div>
+      </div>
+      <div class="step">
+        <p class="text">Non-Bridal Services</p>
+        <div class="bullets">2</div>
+      </div>
+      <div class="step">
+        <p class="text">Bridal Services Provided</p>
+        <div class="bullets">3</div>
+      </div>
+      <div class="step">
+        <p class="text"> Trial Services </p>
+        <div class="bullets">4</div>
+      </div>
+      <div class="step">
+        <p class="text">Submit Services</p>
+        <div class="bullets">5</div>
+      </div>
+    </div>
+    <!-- Buttons for previous next and submit-->
+    <div id="button-section">
+      <button id="Previous">Previous</button>
+      <button id="Next">Next</button>
+      <button id="Submit">Submit</button>
+    </div>
+   </div>
+  <!--<script src="LuongLastingJS.js"></script>-->
+        </main>     
     </body>
 
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>

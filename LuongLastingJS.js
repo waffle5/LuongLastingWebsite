@@ -62,14 +62,55 @@ function register() {
     })
 }
 
+function MainPage(){
+    const previousBtn = document.getElementById('Previous');
+const nextBtn = document.getElementById('Next');
+const submitBtn = document.getElementById('Submit');
+const bullets = [...document.querySelectorAll('.bullets')];
+
+let current = 0;
+const max = 2;
+
+previousBtn.style.display = 'none';
+submitBtn.style.display = 'none';
+
+nextBtn.addEventListener('click', () => {
+  bullets[current].classList.add('completed');
+  current += 1;
+  previousBtn.style.display = 'inline';
+  
+  if(current === max) {
+    nextBtn.style.display = 'none';
+    submitBtn.style.display = 'inline';
+  }
+});
+
+previousBtn.addEventListener('click', () => {
+  bullets[current - 1].classList.remove('completed');
+  current -= 1;
+  submitBtn.style.display = 'none';
+  nextBtn.style.display = 'inline';
+  if( current === 0){
+    previousBtn.style.display = 'none';
+  }
+});
+
+submitBtn.addEventListener('click', () => {
+  location.reload(); /*Saving information in DB*/
+});
+
+}
+
 function login () {
   // Get all our input fields
   email = document.getElementById('email').value
   password = document.getElementById('password').value
+  loginErrorMsg = document.getElementById("login-error-msg");
 
   // Validate input fields
   if (validate_email(email) == false || validate_password(password) == false) {
     alert('Email or Password is Outta Line!!')
+      loginErrorMsg.style.opacity = 1;
     return
     // Don't continue running the code
   }
@@ -94,6 +135,7 @@ function login () {
     // DOne
     alert('User Logged In!!')
 
+    MainPage()
   })
   .catch(function(error) {
     // Firebase will use this to alert of its errors
