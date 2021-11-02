@@ -1,81 +1,95 @@
-<form>
 
-<p>Welcome, artist! Please provide input to this form. </p>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="LuongLastingJS.js"></script>
 
-<p>Number of Wedding Services</p>
-<p>Enter in numbers for bridesmaids and others for the wedding party.</p>
+<html>
+    <body onload="populateClientList()">
+        <form>
 
-<p>MAKEUP - wedding services</p>
-<p><input type="text"></p> 
+        <p>Welcome, artist! Please provide input to this form. </p>
 
-<p>HAIR - wedding services</p>
-<p><input type="text"></p> 
 
-<p>HAIR SETTING ONLY - wedding services</p>
-<p><input type="text"></p> 
+        <div id = "clients"></div><br> 
 
-<p>HAIR STYLING ONLY - wedding services</p>
-<p><input type="text"></p> 
+        <p>Number of Wedding Services</p>
+        <p>Enter in numbers for bridesmaids and others for the wedding party.</p>
 
-<p>Children (7 or younger) - wedding services</p>
-<p><input type="text"></p> 
+        <p>MAKEUP - wedding services</p>
+        <p><input type="text"></p> 
 
-<p>Bridal Service</p>
+        <p>HAIR - wedding services</p>
+        <p><input type="text"></p> 
 
-<p>MAKEUP - Bride</p>
-<p><input type="text"></p> 
+        <p>HAIR SETTING ONLY - wedding services</p>
+        <p><input type="text"></p> 
 
-<p>HAIR - Bride</p>
-<p><input type="text"></p> 
+        <p>HAIR STYLING ONLY - wedding services</p>
+        <p><input type="text"></p> 
 
-<p>HAIR SETTING ONLY - Bride</p>
-<p><input type="text"></p> 
+        <p>Children (7 or younger) - wedding services</p>
+        <p><input type="text"></p> 
 
-<p>HAIR STYLING ONLY - Bride</p>
-<p><input type="text"></p> 
+        <p>Bridal Service</p>
 
-<p>Non-wedding Clients/Bridal Trial</p>
+        <p>MAKEUP - Bride</p>
+        <p><input type="text"></p> 
 
-<p>MAKEUP - non-wedding Clients/Bridal Trial</p>
-<p><input type="text"></p> 
+        <p>HAIR - Bride</p>
+        <p><input type="text"></p> 
 
-<p>HAIR - non-wedding Clients/Bridal Trial</p>
-<p><input type="text"></p> 
+        <p>HAIR SETTING ONLY - Bride</p>
+        <p><input type="text"></p> 
 
-<p>HAIR SETTING ONLY - non-wedding Clients/Bridal Trial</p>
-<p><input type="text"></p> 
+        <p>HAIR STYLING ONLY - Bride</p>
+        <p><input type="text"></p> 
 
-<p>HAIR STYLING ONLY - non-wedding Clients/Bridal Trial</p>
-<p><input type="text"></p> 
+        <p>Non-wedding Clients/Bridal Trial</p>
 
-<p>MAKEUP - non-wedding Clients/Bridal Trial</p>
-<p><input type="text"></p> 
+        <p>MAKEUP - non-wedding Clients/Bridal Trial</p>
+        <p><input type="text"></p> 
 
-<p>Payment Method sent to Luong Lasting</p>
-<p>Account is @luonglasting and luonglasting@gmail.com for electronic payments.</p>
-<p><input type="checkbox">Cash</p>
-<p><input type="checkbox">Chase/QuickPay/Zelle</p>
-<p><input type="checkbox">Venmo</p>
-<p><input type="checkbox">PayPal</p>
-<p><input type="checkbox">No payment collected</p>
-<p><input type="checkbox">Other</p>
+        <p>HAIR - non-wedding Clients/Bridal Trial</p>
+        <p><input type="text"></p> 
 
-<p>Amount collected from the client</p>
-<p><input type="text"></p> 
+        <p>HAIR SETTING ONLY - non-wedding Clients/Bridal Trial</p>
+        <p><input type="text"></p> 
 
-<p>TRAVEL</p>
-<p><input type="checkbox">NO Travel (miles to destination is less than to the studio)</p>
-<p><input type="checkbox">Qualitifed Travel (miles to destination is greater than to the studio, enter miles in next field</p>
+        <p>HAIR STYLING ONLY - non-wedding Clients/Bridal Trial</p>
+        <p><input type="text"></p> 
 
-<p>TRAVEL MILES</p>
-<p>Enter the acutal miles to destination from home, round UP to a whole number. Please enter numbers only, miles to studio
-    will automatically be deducted and calculated for round trip. 
-</p>
-<p><input type="text"></p> 
+        <p>MAKEUP - non-wedding Clients/Bridal Trial</p>
+        <p><input type="text"></p> 
 
-<p>Comments/Notes</p>
-<p><input type="text"></p> 
+        <p>Payment Method sent to Luong Lasting</p>
+        <p>Account is @luonglasting and luonglasting@gmail.com for electronic payments.</p>
+        <p><input type="checkbox">Cash</p>
+        <p><input type="checkbox">Chase/QuickPay/Zelle</p>
+        <p><input type="checkbox">Venmo</p>
+        <p><input type="checkbox">PayPal</p>
+        <p><input type="checkbox">No payment collected</p>
+        <p><input type="checkbox">Other</p>
 
-<p><input type="button">Submit</p> 
+        <p>Amount collected from the client</p>
+        <p><input type="text"></p> 
 
-</form>
+        <p>TRAVEL</p>
+        <p><input type="checkbox">NO Travel (miles to destination is less than to the studio)</p>
+        <p><input type="checkbox">Qualitifed Travel (miles to destination is greater than to the studio, enter miles in next field</p>
+
+        <p>TRAVEL MILES</p>
+        <p>Enter the acutal miles to destination from home, round UP to a whole number. Please enter numbers only, miles to studio
+            will automatically be deducted and calculated for round trip. 
+        </p>
+        <p><input type="text"></p> 
+
+        <p>Comments/Notes</p>
+        <p><input type="text"></p> 
+
+        <p><input type="button">Submit</p> 
+
+        </form>
+    </body>
+</html>
+

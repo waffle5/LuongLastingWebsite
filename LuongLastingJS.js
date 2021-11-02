@@ -86,6 +86,34 @@ function addClient() {
     
 }
 
+function populateClientList() {
+    var database_ref = database.ref()
+    
+    var select = document.createElement("select");
+    select.name = "clientList";
+    select.id = "clientList";
+    
+    database_ref.child('clients').once('value',
+                                      function(AllRecords){
+        AllRecords.forEach(
+            function(CurrentRecord){
+                var option = document.createElement("option");
+                var fullName = CurrentRecord.val().first_name + " " + CurrentRecord.val().last_name
+                option.value = fullName
+                option.text = fullName
+                select.appendChild(option)
+            }
+        )
+    })
+    
+    var lable = document.createElement("lable");
+    lable.innerHTML = "Select Client: "
+    lable.htmlFor = "clients"
+    
+    document.getElementById("clients").appendChild(lable).appendChild(select)
+    console.log("Hello")
+}
+
 function MainPage(){
     const previousBtn = document.getElementById('Previous');
 const nextBtn = document.getElementById('Next');
