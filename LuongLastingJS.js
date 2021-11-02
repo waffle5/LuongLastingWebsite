@@ -62,6 +62,30 @@ function register() {
     })
 }
 
+
+function addClient() {
+    var database_ref = database.ref()
+    
+    email = document.getElementById('email').value
+    first_name = document.getElementById('first_name').value
+    last_name = document.getElementById('last_name').value
+    number_of_services = document.getElementById('number_of_services').value
+    
+    
+    
+    var client_data = {
+        first_name : first_name,
+        last_name : last_name,
+        email : email,
+        number_of_services : number_of_services
+    }
+    
+    database_ref.child('clients/').push(client_data)
+    
+    alert('Client Added!!')
+    
+}
+
 function MainPage(){
     const previousBtn = document.getElementById('Previous');
 const nextBtn = document.getElementById('Next');
