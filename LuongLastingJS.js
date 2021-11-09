@@ -52,6 +52,8 @@ function register() {
     database_ref.child('users/' + user.uid).set(user_data)
         
     alert('User Created!!')
+    MainPage()
+    
     })
     .catch(function(error) {
         // Firebase will use this to alert of its errors
@@ -115,7 +117,9 @@ function populateClientList() {
 }
 
 function MainPage(){
-    const previousBtn = document.getElementById('Previous');
+
+login()
+const previousBtn = document.getElementById('Previous');
 const nextBtn = document.getElementById('Next');
 const submitBtn = document.getElementById('Submit');
 const bullets = [...document.querySelectorAll('.bullets')];
@@ -186,8 +190,9 @@ function login () {
 
     // DOne
     alert('User Logged In!!')
-
-    MainPage()
+    
+    
+    
   })
   .catch(function(error) {
     // Firebase will use this to alert of its errors
@@ -196,6 +201,8 @@ function login () {
 
     alert(error_message)
   })
+    
+    
 }
 
 
