@@ -157,6 +157,8 @@ submitBtn.addEventListener('click', () => {
 
 }
 
+
+//Login as a registered user
 function login () {
   // Get all our input fields
   email = document.getElementById('email').value
@@ -187,11 +189,9 @@ function login () {
 
     // Push to Firebase Database
     database_ref.child('users/' + user.uid).update(user_data)
-
+      
     // DOne
     alert('User Logged In!!')
-    
-    
     
   })
   .catch(function(error) {
@@ -201,7 +201,13 @@ function login () {
 
     alert(error_message)
   })
-    
+  
+    //Redirects logged in users to the main page
+  auth.onAuthStateChanged(user => {
+  if(user) {
+    window.location = 'MainPage.html'; //After successful login, user will be redirected to home.html
+  }
+});  
     
 }
 
