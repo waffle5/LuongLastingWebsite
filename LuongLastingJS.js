@@ -88,6 +88,20 @@ function addClient() {
     
 }
 
+function saveResponses() {
+    var database = database.ref()
+    
+    responses = document.querySelectorAll("p.wedding, p.bride, p.non_wedding, p.payment, p.amount_collected, p.travel, p.travel_miles, p.comments");
+    
+    var res = {
+        responses : responses
+    }
+    
+    database.child('user_responses/').push(res)
+    
+    alert('User responses saved!')
+}
+
 function populateClientList() {
     var database_ref = database.ref()
     
