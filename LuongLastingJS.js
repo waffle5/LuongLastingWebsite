@@ -130,6 +130,49 @@ function populateClientList() {
     console.log("Hello")
 }
 
+/*Calculating the wedding services*/
+function getTotalServices(){
+    var arr = document.getElementsByClassName('wedding');
+    var total = 0;
+    for(var i = 0; i < arr.length; i++){
+        if(parseInt(arr[i].value)){
+            total += parseInt(arr[i].value);
+        }
+        
+        document.getElementById('totalServices').value = total;
+    }
+    
+    
+}
+
+function getTotalServicesBridal(){
+    var arr = document.getElementsByClassName('bride');
+    var total = 0;
+    for(var i = 0; i < arr.length; i++){
+        if(parseInt(arr[i].value)){
+            total += parseInt(arr[i].value);
+        }
+        
+        document.getElementById('totalServices').value = total;
+    }
+    
+    
+}
+
+function getTotalServicesNonWedding(){
+    var arr = document.getElementsByClassName('non-wedding');
+    var total = 0;
+    for(var i = 0; i < arr.length; i++){
+        if(parseInt(arr[i].value)){
+            total += parseInt(arr[i].value);
+        }
+        
+        document.getElementById('totalServices').value = total;
+    }
+    
+    
+}
+
 function MainPage(){
 
 login()

@@ -17,47 +17,59 @@
         <p>Enter in numbers for bridesmaids and others for the wedding party.</p>
 
         <p>MAKEUP - wedding services</p>
-        <p><input type="text" class="wedding"></p> 
+        <p><input type="number" min="0" max="30" class = "wedding" onblur="getTotalServices()"></p> 
 
         <p>HAIR - wedding services</p>
-        <p><input type="text" class="wedding"></p> 
+        <p><input type="number" min="0" max="30" class = "wedding" onblur="getTotalServices()"></p> 
 
         <p>HAIR SETTING ONLY - wedding services</p>
-        <p><input type="text" class="wedding"></p> 
+        <p><input type="number" min="0" max="30" class = "wedding" onblur="getTotalServices()"></p> 
 
         <p>HAIR STYLING ONLY - wedding services</p>
-        <p><input type="text" class="wedding"></p> 
+        <p><input type="number" min="0" max="30" class = "wedding" onblur="getTotalServices()"></p> 
 
         <p>Children (7 or younger) - wedding services</p>
-        <p><input type="text" class="wedding"></p> 
+        <p><input type="number" min="0" max="30" class = "wedding" onblur="getTotalServices()"></p> 
+            
+        <p>Total Wedding Services</p>
+        <input type="text" name = "totalServices" id = "totalServices" value = "0">
 
+        <!-- Bridal Services -->
         <p>Bridal Service</p>
 
         <p>MAKEUP - Bride</p>
-        <p><input type="text" class="bride"></p> 
+        <p><input type="number" min="0" max="30" class = "bride" onblur="getTotalServicesBridal()"></p> 
 
         <p>HAIR - Bride</p>
-        <p><input type="text" class="bride"></p> 
+        <p><input type="number" min="0" max="30" class = "bride" onblur="getTotalServicesBridal()"></p> 
 
         <p>HAIR SETTING ONLY - Bride</p>
-        <p><input type="text" class="bride"></p> 
+        <p><input type="number" min="0" max="30" class = "bride" onblur="getTotalServicesBridal()"></p> 
 
         <p>HAIR STYLING ONLY - Bride</p>
-        <p><input type="text" class="bride"></p> 
+        <p><input type="number" min="0" max="30" class = "bride" onblur="getTotalServicesBridal()"></p> 
+            
+        <p>Total Services for Bride</p>
+        <input type="text" name = "totalServices" id = "totalServices" value = "0">
 
+            
+        <!-- Non-wedding Clients and bridal trial -->
         <p>Non-wedding Clients/Bridal Trial</p>
 
         <p>MAKEUP - non-wedding Clients/Bridal Trial</p>
-        <p><input type="text" class="non_wedding"></p> 
+        <p><input type="number" min="0" max="30" class = "non-wedding" onblur="getTotalServicesNonWedding()"></p> 
 
         <p>HAIR - non-wedding Clients/Bridal Trial</p>
-        <p><input type="text" class="non_wedding"></p> 
+        <p><input type="number" min="0" max="30" class = "non-wedding" onblur="getTotalServicesNonWedding()"></p> 
 
         <p>HAIR SETTING ONLY - non-wedding Clients/Bridal Trial</p>
-        <p><input type="text" class="non_wedding"></p> 
+        <p><input type="number" min="0" max="30" class = "non-wedding" onblur="getTotalServicesNonWedding()"></p> 
 
         <p>HAIR STYLING ONLY - non-wedding Clients/Bridal Trial</p>
-        <p><input type="text" class="non_wedding"></p> 
+        <p><input type="number" min="0" max="30" class = "non-wedding" onblur="getTotalServicesNonWedding()"></p> 
+            
+        <p>Total Services for Non-wedding Clients/Bridal Trial</p>
+        <input type="text" name = "totalServices" id = "totalServices" value = "0">
 
         <p>Payment Method sent to Luong Lasting</p>
         <p>Account is @luonglasting and luonglasting@gmail.com for electronic payments.</p>
