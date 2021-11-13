@@ -17,19 +17,19 @@
         <p>Enter in numbers for bridesmaids and others for the wedding party.</p>
 
         <p>MAKEUP - wedding services</p>
-        <p><input type="number" min="0" max="30" class = "wedding" onblur="getTotalServices()"></p> 
+        <p><input type="number" min="0" max="30" id="makeup_wedding" onblur="getTotalServices()"></p> 
 
         <p>HAIR - wedding services</p>
-        <p><input type="number" min="0" max="30" class = "wedding" onblur="getTotalServices()"></p> 
+        <p><input type="number" min="0" max="30" id="hair_wedding" onblur="getTotalServices()"></p> 
 
         <p>HAIR SETTING ONLY - wedding services</p>
-        <p><input type="number" min="0" max="30" class = "wedding" onblur="getTotalServices()"></p> 
+        <p><input type="number" min="0" max="30" id="hair_setting_wedding" onblur="getTotalServices()"></p> 
 
         <p>HAIR STYLING ONLY - wedding services</p>
-        <p><input type="number" min="0" max="30" class = "wedding" onblur="getTotalServices()"></p> 
+        <p><input type="number" min="0" max="30" id="hair_styling_wedding" onblur="getTotalServices()"></p> 
 
         <p>Children (7 or younger) - wedding services</p>
-        <p><input type="number" min="0" max="30" class = "wedding" onblur="getTotalServices()"></p> 
+        <p><input type="number" min="0" max="30" id="children_wedding" onblur="getTotalServices()"></p> 
             
         <p>Total Wedding Services</p>
         <input type="text" name = "totalServices" id = "totalServices" value = "0">
@@ -38,16 +38,16 @@
         <p>Bridal Service</p>
 
         <p>MAKEUP - Bride</p>
-        <p><input type="number" min="0" max="30" class = "bride" onblur="getTotalServicesBridal()"></p> 
+        <p><input type="number" min="0" max="30" id="makeup_bride" onblur="getTotalServicesBridal()"></p> 
 
         <p>HAIR - Bride</p>
-        <p><input type="number" min="0" max="30" class = "bride" onblur="getTotalServicesBridal()"></p> 
+        <p><input type="number" min="0" max="30" id="hair_bride" onblur="getTotalServicesBridal()"></p> 
 
         <p>HAIR SETTING ONLY - Bride</p>
-        <p><input type="number" min="0" max="30" class = "bride" onblur="getTotalServicesBridal()"></p> 
+        <p><input type="number" min="0" max="30" id="hair_setting_bride" onblur="getTotalServicesBridal()"></p> 
 
         <p>HAIR STYLING ONLY - Bride</p>
-        <p><input type="number" min="0" max="30" class = "bride" onblur="getTotalServicesBridal()"></p> 
+        <p><input type="number" min="0" max="30" id="hair_styling_bride" onblur="getTotalServicesBridal()"></p> 
             
         <p>Total Services for Bride</p>
         <input type="text" name = "totalServices" id = "totalServices" value = "0">
@@ -57,44 +57,44 @@
         <p>Non-wedding Clients/Bridal Trial</p>
 
         <p>MAKEUP - non-wedding Clients/Bridal Trial</p>
-        <p><input type="number" min="0" max="30" class = "non-wedding" onblur="getTotalServicesNonWedding()"></p> 
+        <p><input type="number" min="0" max="30" id="makeup_non_wedding" onblur="getTotalServicesNonWedding()"></p> 
 
         <p>HAIR - non-wedding Clients/Bridal Trial</p>
-        <p><input type="number" min="0" max="30" class = "non-wedding" onblur="getTotalServicesNonWedding()"></p> 
+        <p><input type="number" min="0" max="30" id="hair_non_wedding" onblur="getTotalServicesNonWedding()"></p> 
 
         <p>HAIR SETTING ONLY - non-wedding Clients/Bridal Trial</p>
-        <p><input type="number" min="0" max="30" class = "non-wedding" onblur="getTotalServicesNonWedding()"></p> 
+        <p><input type="number" min="0" max="30" id="hair_setting_non_wedding" onblur="getTotalServicesNonWedding()"></p> 
 
         <p>HAIR STYLING ONLY - non-wedding Clients/Bridal Trial</p>
-        <p><input type="number" min="0" max="30" class = "non-wedding" onblur="getTotalServicesNonWedding()"></p> 
+        <p><input type="number" min="0" max="30" id="hair_styling_non_wedding" onblur="getTotalServicesNonWedding()"></p> 
             
         <p>Total Services for Non-wedding Clients/Bridal Trial</p>
         <input type="text" name = "totalServices" id = "totalServices" value = "0">
 
         <p>Payment Method sent to Luong Lasting</p>
         <p>Account is @luonglasting and luonglasting@gmail.com for electronic payments.</p>
-        <p><input type="checkbox" class="payment">Cash</p>
-        <p><input type="checkbox" class="payment">Chase/QuickPay/Zelle</p>
-        <p><input type="checkbox" class="payment">Venmo</p>
-        <p><input type="checkbox" class="payment">PayPal</p>
-        <p><input type="checkbox" class="payment">No payment collected</p>
-        <p><input type="checkbox" class="payment">Other</p>
+        <p><input type="checkbox" id="cash">Cash</p>
+        <p><input type="checkbox" id="chase_quickpay_zelle">Chase/QuickPay/Zelle</p>
+        <p><input type="checkbox" id="venmo">Venmo</p>
+        <p><input type="checkbox" id="paypal">PayPal</p>
+        <p><input type="checkbox" id="no_payment">No payment collected</p>
+        <p><input type="checkbox" id="other">Other</p>
 
         <p>Amount collected from the client</p>
-        <p><input type="text" class="amount_collected"></p> 
+        <p><input type="text" id="amount_collected"></p> 
 
         <p>TRAVEL</p>
-        <p><input type="checkbox" class="travel">NO Travel (miles to destination is less than to the studio)</p>
-        <p><input type="checkbox" class="travel">Qualitifed Travel (miles to destination is greater than to the studio, enter miles in next field</p>
+        <p><input type="checkbox" id="no_travel">NO Travel (miles to destination is less than to the studio)</p>
+        <p><input type="checkbox" id="travel">Qualified Travel (miles to destination is greater than to the studio, enter miles in next field</p>
 
         <p>TRAVEL MILES</p>
         <p>Enter the acutal miles to destination from home, round UP to a whole number. Please enter numbers only, miles to studio
             will automatically be deducted and calculated for round trip. 
         </p>
-        <p><input type="text" class="travel_miles"></p> 
+        <p><input type="text" id="travel_miles"></p> 
 
         <p>Comments/Notes</p>
-        <p><input type="text" class="comments"></p> 
+        <p><input type="text" id="comments"></p> 
 
         <button onclick="saveResponses()">Submit</button> 
 

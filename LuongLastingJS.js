@@ -91,13 +91,63 @@ function addClient() {
 function saveResponses() {
     var database = database.ref()
     
-    responses = document.querySelectorAll("p.wedding, p.bride, p.non-wedding, p.payment, p.amount_collected, p.travel, p.travel_miles, p.comments");
+    makeup_wedding = document.getElementById('makeup_wedding').value
+    hair_wedding = document.getElementById('hair_wedding').value
+    hair_setting_wedding = document.getElementById('hair_setting_wedding').value
+    hair_styling_wedding = document.getElementById('hair_styling_wedding').value
+    children_wedding = document.getElementById('children_wedding').value
     
-    var res = {
-        responses : responses
+    makeup_bride = document.getElementById('makeup_bride').value
+    hair_bride = document.getElementById('hair_bride').value
+    hair_setting_bride = document.getElementById('hair_setting_bride').value
+    hair_styling_bride = document.getElementById('hair_styling_bride').value
+    
+    makeup_non_wedding = document.getElementById('makeup_non_wedding').value
+    hair_non_wedding = document.getElementById('hair_non_wedding').value
+    hair_setting_non_wedding = document.getElementById('hair_setting_non_wedding').value
+    hair_styling_non_wedding = document.getElementById('hair_styling_non_wedding').value
+    
+    cash = document.getElementById('cash').value
+    chase_quickpay_zelle = document.getElementById('chase_quickpay_zelle').value
+    venmo = document.getElementById('venmo').value
+    paypal = document.getElementById('paypal').value
+    no_payment = document.getElementById('no_payment').value
+    other = document.getElementById('other').value
+    
+    amount_collected = document.getElementById('amount_collected').value
+    no_travel = document.getElementById('no_travel').value
+    travel = document.getElementById('travel').value
+    travel_miles = document.getElementById('travel_miles').value
+    comments = document.getElementById('comments').value
+    
+    var responses = {
+        makeup_wedding : makeup_wedding,
+        hair_wedding : hair_wedding,
+        hair_setting_wedding : hair_setting_wedding,
+        hair_styling_wedding : hair_styling_wedding,
+        children_wedding : children_wedding,
+        makeup_bride : makeup_bride,
+        hair_bride : hair_bride,
+        hair_setting_bride : hair_setting_bride,
+        hair_styling_bride : hair_styling_bride,
+        makeup_non_wedding : makeup_non_wedding,
+        hair_non_wedding : hair_non_wedding,
+        hair_setting_non_wedding : hair_setting_non_wedding,
+        hair_styling_non_wedding : hair_styling_non_wedding,
+        cash : cash,
+        chase_quickpay_zelle : chase_quickpay_zelle,
+        venmo : venmo,
+        paypal : paypal,
+        no_payment : no_payment,
+        other : other,
+        amount_collected : amount_collected,
+        no_travel : no_travel,
+        travel : travel,
+        travel_miles : travel_miles,
+        comments : comments
     }
     
-    database.child('user_responses/').push(res)
+    database.child('user_responses/').push(responses)
     
     alert('User responses saved!')
 }
