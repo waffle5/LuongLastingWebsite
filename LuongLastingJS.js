@@ -91,7 +91,7 @@ function addClient() {
 function saveResponses() {
     var database = database.ref()
     
-    responses = document.querySelectorAll("p.wedding, p.bride, p.non_wedding, p.payment, p.amount_collected, p.travel, p.travel_miles, p.comments");
+    responses = document.querySelectorAll("p.wedding, p.bride, p.non-wedding, p.payment, p.amount_collected, p.travel, p.travel_miles, p.comments");
     
     var res = {
         responses : responses
