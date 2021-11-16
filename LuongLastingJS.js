@@ -203,7 +203,7 @@ function getTotalServicesBridal(){
             total += parseInt(arr[i].value);
         }
         
-        document.getElementById('totalServices').value = total;
+        document.getElementById('totalServicesBride').value = total;
     }
     
     
@@ -217,7 +217,7 @@ function getTotalServicesNonWedding(){
             total += parseInt(arr[i].value);
         }
         
-        document.getElementById('totalServices').value = total;
+        document.getElementById('totalServicesNonWedding').value = total;
     }
     
     
