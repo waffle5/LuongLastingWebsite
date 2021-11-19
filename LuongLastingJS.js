@@ -144,27 +144,28 @@ function addClient() {
 function addArtist() {
     var database_ref = database.ref()
     
-    email = document.getElementById('artistEmail').value
-    first_name = document.getElementById('artistFirstName').value
-    last_name = document.getElementById('artistLastName').value
-    distance_to_studio = document.getElementById('artistDistanceToStudio').value
-    bride_makeup_pay = document.getElementById('artistBridePayMakeUp').value
-    bride_hair_pay = document.getElementById('artistBridePayHair').value
-    Nonbride_makeup_pay = document.getElementById('artistNonBridePayMakeUp').value
-    Nonbride_hair_pay = document.getElementById('artistNonBridePayHair').value
-    
-    
-    
     var artist_data = {
-        artistID: first_name + Date.now(),
-        email : email,
-        first_name : first_name,
-        last_name : last_name,
-        distance_to_studio : distance_to_studio,
-        bride_makeup_pay : bride_makeup_pay,
-        bride_hair_pay : bride_hair_pay,
-        Nonbride_makeup_pay : Nonbride_makeup_pay,
-        Nonbride_hair_pay : Nonbride_hair_pay
+        artistID: $("#artistFirstName").val() + Date.now(),
+        first_name : $("#artistFirstName").val(),
+        last_name : $("#artistLastName").val(),
+        
+        nonBride_makeup_pay : $("#artistNonBridePayMakeUp").val(),
+        nonBride_hair_pay : $("#artistNonBridePayHair").val(),
+        nonBride_hair_setting_pay : $("#artistNonBridePayHairSetting").val(),
+        nonBride_hair_styling_pay : $("#artistNonBridePayHairStyling").val(),
+        children_pay: $("#artistChildrenPay").val(),
+        
+        bride_makeup_pay : $("#artistBridePayMakeUp").val(),
+        bride_hair_pay : $("#artistBridePayHair").val(),
+        bride_hair_setting_pay : $("#artistBridePayHairSetting").val(),
+        bride_hair_styling_pay: $("#artistBridePayHairStyling").val(),
+        
+        nonWedding_makeup_pay : $("#artistNonWeddingPayMakeUp").val(),
+        nonWedding_hair_pay : $("#artistNonWeddingPayHair").val(),
+        nonWedding_hair_setting_pay : $("#artistNonWeddingPayHairSetting").val(),
+        nonWedding_hair_styling_pay : $("#artistNonWeddingPayHairStyling").val(),
+           
+        distance_to_studio : $("#artistDistanceToStudio").val()
     }
     
     database_ref.child('artists/' + artist_data.artistID).set(artist_data)
