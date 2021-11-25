@@ -292,6 +292,47 @@ function populateClientListv2() {
     
 }
 
+function eventInfoNext() {
+    $("#eventInfo-section").hide()
+    $("#NonBride-section").show()
+}
+
+function nonBridePrev() {
+    $("#eventInfo-section").show()
+    $("#NonBride-section").hide()
+}
+
+
+function nonBrideNext() {
+    $("#NonBride-section").hide()
+    $("#bride-section").show()
+}
+
+function bridePrev() {
+    $("#NonBride-section").show()
+    $("#bride-section").hide()
+}
+
+function brideNext(){
+    $("#bride-section").hide()
+    $("#NonWedding-Section").show()
+}
+
+function nonNonWedingPrev(){
+    $("#bride-section").show()
+    $("#NonWedding-Section").hide()
+}
+
+function nonWeddingNext(){
+    $("#misc-section").show()
+    $("#NonWedding-Section").hide()
+}
+
+function miscPrev(){
+    $("#misc-section").hide()
+    $("#NonWedding-Section").show()
+}
+
 function populateArtistList() {
     var database_ref = database.ref()
     
