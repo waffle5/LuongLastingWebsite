@@ -512,6 +512,42 @@ function validate_password(password) {
     return true
   }
 }
+function showHome(){
+    document.getElementById("myform").style.display="block";
+}
+function showClients() {
+  document.getElementById("myform").style.display = "none";
+  document.getElementById("recordServicesTitle").style.display = "none";
+}
+function showArtists(){
+    
+    document.getElementById("myform").style.display = "block";
+}
+function showPaySummary(){
+    /*Hide form elements*/
+    document.getElementById("myform").style.display = "none";
+    /*var database_ref = database.ref()
+    
+    var select = document.getElementById("summaryOfPayment");
+    
+    database_ref.child('payment').once('value',
+                                      function(AllRecords){
+        AllRecords.forEach(
+            function(CurrentRecord){
+                var option = document.createElement("option");
+                var fullName = CurrentRecord.val().first_name + " " + CurrentRecord.val().last_name
+                option.value = CurrentRecord.val().artistID
+                option.text = fullName
+                select.appendChild(option)
+            }
+        )
+    })*/
+
+}
+function showResponses(){
+    /*Show all responses */
+    document.getElementById("myform").style.display = "block";
+}
 
 ///*
 ///*Constant because they will not change*/

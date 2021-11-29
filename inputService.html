@@ -29,46 +29,45 @@
             <!-- Navigation bar here -->
             <div class="container">
         <br>
-        <!-- Nav tabs -->
+        <!-- Nav tabs on the navigation bar -->
         <ul class="nav nav-tabs fixed-top bg-dark navbar-dark" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#artists">Artist</a>
+                <a class="nav-link active" onclick="showArtists()" data-toggle="tab" href="#artists">Artist</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#responses">Responses</a>
+                <a class="nav-link" onclick="showResponses()"data-toggle="tab" href="#responses">Responses</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#clients">Clients</a>
+                <a class="nav-link" onclick="showClients()" data-toggle="tab" href="#clients">Clients</a>
             </li>
           <li class = "nav-item">
-            <a class ="nav-link" data-toggle="tab" href="#summary">Summary</a>
+            <a class ="nav-link" onclick="showPaySummary()" data-toggle="tab" href="#summary">Pay Summary</a>
+              
           </li>
         </ul>
         <!-- Tab content -->
         <div class="tab-content">
             <div id="artists" class="container tab-pane active"><br>
-                <h3>Artist Information</h3>
-                
+                <h3>Artist Information</h3> 
             </div>
             <div id="responses" class="container tab-pane fade"><br>
-                <h3>Responses</h3>
-                
+                <h3>Responses</h3>   
             </div>
             <div id="clients" class="container tab-pane fade"><br>
-                <h3>Client Information</h3>
-                
+                <h3>Bride or Client's Name</h3>  
+                <div id="client"></div>
             </div>
           <div id ="summary" class="container tab-pane fade"><br>
-            <h3>Summary Information</h3>
-            
-        </div>
-          
+            <h3>Pay Summary</h3>
+            <div id="summaryOfPayment"></div>
+        </div>    
     </div>
                 <!-- End of Navbar-->
-            <h1 class = "fw-bold">Record Wedding Service</h1>
+            <h1 class = "fw-bold" id="recordServicesTitle">Record Wedding Service</h1>
             
             <div class = "well">
-                <form>
+                <form id="myform">
+                    
                     <div id= "eventInfo-section">
                         <!-- Email Input -->
                         <div class="progress">
@@ -89,6 +88,7 @@
                             </select>
                           </div>
                       </div>
+                     
                         <!-- Client Select -->
                       <div class="form-group">
                           <div class="mb-3">
@@ -261,7 +261,7 @@
                         <div class = "form-group">
                           <div class="mb-3">
                             <label for="ammountColleted" class="form-label fw-bold">Amount collected from client</label>
-                            <input type="number" class="form-control" id="ammountColleted" placeholder = "Ammount">
+                            <input type="number" class="form-control" id="ammountColleted" placeholder = "Amount">
                           </div>
                          </div>
 
