@@ -521,32 +521,42 @@ function showClients() {
 }
 function showArtists(){
     
-    document.getElementById("myform").style.display = "block";
+    document.getElementById("myform").style.display = "none";
 }
 function showPaySummary(){
     /*Hide form elements*/
     document.getElementById("myform").style.display = "none";
-    /*var database_ref = database.ref()
+    document.getElementById("recordServciesTitle").style.display = "none";
     
-    var select = document.getElementById("summaryOfPayment");
+    var database_ref = database.ref()
     
-    database_ref.child('payment').once('value',
+    var payment = document.getElementById("summaryOfPayment");
+    
+    database_ref.child('artists').once('value',
                                       function(AllRecords){
         AllRecords.forEach(
             function(CurrentRecord){
-                var option = document.createElement("option");
-                var fullName = CurrentRecord.val().first_name + " " + CurrentRecord.val().last_name
-                option.value = CurrentRecord.val().artistID
-                option.text = fullName
-                select.appendChild(option)
+                var paymentDisplay = document.createElement("paymentDisplay");
+                //var paymentDisplay = document.getElementById("summaryOfPayment");
+                var nonbrideHairPay = CurrentRecord.val().Nonbride_hair_pay
+                var nonbrideMakeupPay = CurrentRecord.val().Nonbride_makeup_pay
+                var brideHairPay = CurrentRecord.val().bride_hair_pay
+                var brideMakeupPay = CurrentRecord.val().bride_makeup_pay
+                
+                var paymentSummary = nonbrideHairPay + '\n' + nonbrideMakeupPay + '\n' +
+                    brideHairPay + '\n' + brideMakeupPay
+                
+                paymentDisplay.value = CurrentRecord.val().artistID
+                paymentDisplay.text = paymentSummary
+                payment.appendChild(paymentDisplay)
             }
         )
-    })*/
+    })
 
 }
 function showResponses(){
     /*Show all responses */
-    document.getElementById("myform").style.display = "block";
+    document.getElementById("myform").style.display = "hidden";
 }
 
 ///*
