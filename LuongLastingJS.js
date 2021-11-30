@@ -144,33 +144,40 @@ function addClient() {
 function addArtist() {
     var database_ref = database.ref()
     
-    var artist_data = {
-        artistID: $("#artistFirstName").val() + Date.now(),
-        first_name : $("#artistFirstName").val(),
-        last_name : $("#artistLastName").val(),
-        
-        nonBride_makeup_pay : $("#artistNonBridePayMakeUp").val(),
-        nonBride_hair_pay : $("#artistNonBridePayHair").val(),
-        nonBride_hair_setting_pay : $("#artistNonBridePayHairSetting").val(),
-        nonBride_hair_styling_pay : $("#artistNonBridePayHairStyling").val(),
-        children_pay: $("#artistChildrenPay").val(),
-        
-        bride_makeup_pay : $("#artistBridePayMakeUp").val(),
-        bride_hair_pay : $("#artistBridePayHair").val(),
-        bride_hair_setting_pay : $("#artistBridePayHairSetting").val(),
-        bride_hair_styling_pay: $("#artistBridePayHairStyling").val(),
-        
-        nonWedding_makeup_pay : $("#artistNonWeddingPayMakeUp").val(),
-        nonWedding_hair_pay : $("#artistNonWeddingPayHair").val(),
-        nonWedding_hair_setting_pay : $("#artistNonWeddingPayHairSetting").val(),
-        nonWedding_hair_styling_pay : $("#artistNonWeddingPayHairStyling").val(),
-           
-        distance_to_studio : $("#artistDistanceToStudio").val()
-    }
+    fn = $("#artistFirstName").val().trim()
+    ln = $("#artistLastName").val().trim()
     
-    database_ref.child('artists/' + artist_data.artistID).set(artist_data)
-    
-    alert('Artist Added!!')
+    if(fn== "" || ln== ""){
+            alert('Please fill in artist name')
+        } else {
+             var artist_data = {
+                artistID: $("#artistFirstName").val() + Date.now(),
+                first_name : $("#artistFirstName").val(),
+                last_name : $("#artistLastName").val(),
+
+                nonBride_makeup_pay : $("#artistNonBridePayMakeUp").val(),
+                nonBride_hair_pay : $("#artistNonBridePayHair").val(),
+                nonBride_hair_setting_pay : $("#artistNonBridePayHairSetting").val(),
+                nonBride_hair_styling_pay : $("#artistNonBridePayHairStyling").val(),
+                children_pay: $("#artistChildrenPay").val(),
+
+                bride_makeup_pay : $("#artistBridePayMakeUp").val(),
+                bride_hair_pay : $("#artistBridePayHair").val(),
+                bride_hair_setting_pay : $("#artistBridePayHairSetting").val(),
+                bride_hair_styling_pay: $("#artistBridePayHairStyling").val(),
+
+                nonWedding_makeup_pay : $("#artistNonWeddingPayMakeUp").val(),
+                nonWedding_hair_pay : $("#artistNonWeddingPayHair").val(),
+                nonWedding_hair_setting_pay : $("#artistNonWeddingPayHairSetting").val(),
+                nonWedding_hair_styling_pay : $("#artistNonWeddingPayHairStyling").val(),
+
+                distance_to_studio : $("#artistDistanceToStudio").val()
+            }
+
+            database_ref.child('artists/' + artist_data.artistID).set(artist_data)
+
+            alert('Artist Added!!')
+        }
     
 }
 
