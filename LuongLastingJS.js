@@ -506,14 +506,7 @@ function calcTotalServicesAndCosts() {
     
     // reading the data of the total amount of services from Firebase
     var totalServices = database_ref.on("value", function(snapshot) {
-        var data = snapshot.val();
-        // iterating through all service values and adding them up to a total
-        for(let i in data) {
-            //console.log(data[i]);
-            totalAmount += data[i];
-        }
-        //console.log(data);
-        //console.log(totalAmount);
+        snapshot.val();
     }, function(error) {
         console.log("Error: " + error.code);
     });
