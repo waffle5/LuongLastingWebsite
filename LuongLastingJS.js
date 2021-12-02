@@ -180,6 +180,8 @@ function addArtist() {
     
 }
 
+
+
 function saveResponses() {
     var database = database.ref()
     
@@ -296,6 +298,126 @@ function populateClientListv2() {
         )
     })
     
+}
+
+function getAllArtist() {
+    database.ref('artists').on('value',
+                                function(AllRecords){
+        $("#artistTableBody").empty()
+        AllRecords.forEach(
+            function(CurrentRecord){
+                var brideHairPay = CurrentRecord.val().bride_hair_pay
+                var brideHairSettingPay = CurrentRecord.val().bride_hair_setting_pay
+                var brideHairStylingPay = CurrentRecord.val().bride_hair_styling_pay
+                var brideMakeupPay = CurrentRecord.val().bride_makeup_pay
+                var childrenPay = CurrentRecord.val().children_pay
+                var distanceToStudio = CurrentRecord.val().distance_to_studio
+                var firstName = CurrentRecord.val().first_name
+                var lastName = CurrentRecord.val().last_name
+                var nonBrideHairPay = CurrentRecord.val().nonBride_hair_pay
+                var nonBrideHairSettingPay = CurrentRecord.val().nonBride_hair_setting_pay
+                var nonBrideHairStylingPay = CurrentRecord.val().nonBride_hair_styling_pay
+                var nonBrideMakeupPay = CurrentRecord.val().nonBride_makeup_pay
+                var nonWeddingHairPay = CurrentRecord.val().nonWedding_hair_pay
+                var nonWeddingHairSettingPay = CurrentRecord.val().nonWedding_hair_setting_pay
+                var nonWeddingHairStylingPay = CurrentRecord.val().nonWedding_hair_styling_pay
+                var nonWeddingMakeupPay = CurrentRecord.val().nonWedding_makeup_pay
+                
+                var tbody = document.getElementById('artistTableBody')
+                
+                var trow = document.createElement('tr')
+                var td1 = document.createElement('td')
+                var td2 = document.createElement('td')
+                var td3 = document.createElement('td')
+                var td4 = document.createElement('td')
+                var td5 = document.createElement('td')
+                var td6 = document.createElement('td')
+                var td7 = document.createElement('td')
+                var td8 = document.createElement('td')
+                var td9 = document.createElement('td')
+                var td10 = document.createElement('td')
+                var td11 = document.createElement('td')
+                var td12 = document.createElement('td')
+                var td13 = document.createElement('td')
+                var td14 = document.createElement('td')
+                var td15 = document.createElement('td')
+                var td16 = document.createElement('td')
+                
+                td1.innerHTML = firstName
+                td2.innerHTML = lastName
+                td3.innerHTML = nonBrideMakeupPay
+                td4.innerHTML = nonBrideHairPay
+                td5.innerHTML = nonBrideHairSettingPay
+                td6.innerHTML = nonBrideHairStylingPay
+                td7.innerHTML = childrenPay
+                td8.innerHTML = brideMakeupPay
+                td9.innerHTML = brideHairPay
+                td10.innerHTML = brideHairSettingPay
+                td11.innerHTML = brideHairStylingPay
+                td12.innerHTML = nonWeddingMakeupPay
+                td13.innerHTML = nonWeddingHairPay
+                td14.innerHTML = nonWeddingHairSettingPay
+                td15.innerHTML = nonWeddingHairStylingPay
+                td16.innerHTML = distanceToStudio
+                
+                trow.appendChild(td1)
+                trow.appendChild(td2)
+                trow.appendChild(td3)
+                trow.appendChild(td4)
+                trow.appendChild(td5)
+                trow.appendChild(td6)
+                trow.appendChild(td7)
+                trow.appendChild(td8)
+                trow.appendChild(td9)
+                trow.appendChild(td10)
+                trow.appendChild(td11)
+                trow.appendChild(td12)
+                trow.appendChild(td13)
+                trow.appendChild(td14)
+                trow.appendChild(td15)
+                trow.appendChild(td16)
+                
+                tbody.appendChild(trow)
+                
+                   
+            }
+        )
+    })
+}
+
+function getAllClients () {
+        database.ref('clients').on('value',
+                                function(AllRecords){
+        $("#clientTableBody").empty()
+        AllRecords.forEach(
+            function(CurrentRecord){
+                var firstName = CurrentRecord.val().first_name
+                var lastName = CurrentRecord.val().last_name
+                var email = CurrentRecord.val().email
+                
+                var tbody = document.getElementById('clientTableBody')
+                
+                var trow = document.createElement('tr')
+                var td1 = document.createElement('td')
+                var td2 = document.createElement('td')
+                var td3 = document.createElement('td')
+
+                
+                td1.innerHTML = firstName
+                td2.innerHTML = lastName
+                td3.innerHTML = email
+
+                
+                trow.appendChild(td1)
+                trow.appendChild(td2)
+                trow.appendChild(td3)
+
+                tbody.appendChild(trow)
+                
+                   
+            }
+        )
+    })
 }
 
 function eventInfoNext() {

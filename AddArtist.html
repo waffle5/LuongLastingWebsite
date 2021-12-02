@@ -21,7 +21,7 @@
     
     </head>
     
-    <body>
+    <body onload="getAllArtist()">
         <!-- Navigation bar here -->
             <div class="container">
         <br>
@@ -170,6 +170,7 @@
             </tr>
             </thead>
             <tbody id = "artistTableBody">
+                <div id="showArtistRows">
                 <tr>
                   <td>Mark</td>
                   <td>Otto</td>
@@ -190,6 +191,7 @@
                     <td><button onclick="" id = "createArtistButton" type="button" class="btn btn-primary my-2">Add Artist</button> </td>
                     <td><button onclick="" id = "createArtistButton" type="button" class="btn btn-primary my-2 ml-2">Add Artist</button></td>
                 </tr>
+             </div>
               </tbody>
         </table>
              </div>

@@ -21,7 +21,7 @@
     
     </head>
     
-    <body>
+    <body onload="getAllClients()">
         <!-- Navigation bar here -->
         <div class="container"><br>
         <!-- Nav tabs on the navigation bar -->              
@@ -78,6 +78,24 @@
          </div>
 
             </div>
+               
+         <div class = "table-responsive">   
+        <table id = "clientTable" class="table table-bordered table-s">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Email</th>
+        
+            </tr>
+            </thead>
+            <tbody id = "clientTableBody">
+                <div id="showArtistRows">
+               
+             </div>
+              </tbody>
+        </table>
+             </div>
         </div>
     </body>
 </html>
