@@ -342,6 +342,9 @@ function getAllArtist() {
                 var td14 = document.createElement('td')
                 var td15 = document.createElement('td')
                 var td16 = document.createElement('td')
+                var td17 = document.createElement('td')
+                var td18 = document.createElement('td')
+            
                 
                 td1.innerHTML = firstName
                 td2.innerHTML = lastName
@@ -359,7 +362,9 @@ function getAllArtist() {
                 td14.innerHTML = nonWeddingHairSettingPay
                 td15.innerHTML = nonWeddingHairStylingPay
                 td16.innerHTML = distanceToStudio
-                
+                td17.innerHTML = '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs target="#exampleModal">Edit Artist</button>'
+                td18.innerHTML += '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs target="#exampleModal">Delete Artist</button>'
+                               
                 trow.appendChild(td1)
                 trow.appendChild(td2)
                 trow.appendChild(td3)
@@ -376,6 +381,8 @@ function getAllArtist() {
                 trow.appendChild(td14)
                 trow.appendChild(td15)
                 trow.appendChild(td16)
+                trow.appendChild(td17)
+                trow.appendChild(td18)
                 
                 tbody.appendChild(trow)
                 
