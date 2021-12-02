@@ -130,7 +130,6 @@ function addClient() {
         first_name : $("#first_name").val(),
         last_name : $("#last_name").val(),
         email : $("#email").val(),
-        number_of_services : $("#number_of_services").val()
     }
     
     console.log(client_data)
