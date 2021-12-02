@@ -481,6 +481,20 @@ function populateArtistList() {
 
 }
 
+function calcTravel() {
+    var database_ref = database.ref("responses").equalTo("travelMiles")
+    
+    var cost = 0.55;
+    var miles = database_ref.on("value", function(snapshot) {
+        var data = snapshot.val();
+        console.log(data);
+    }, function(error) {
+        console.log("Error: " + error.code);
+    });
+    
+    var travelCost = cost * miles;
+}
+
 /*Calculating the wedding services*/
 function getTotalServices(){
     var arr = document.getElementsByClassName('wedding');
