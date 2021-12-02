@@ -482,9 +482,11 @@ function populateArtistList() {
 }
 
 function calcTravel() {
+    // equalTo() method returns items equal to the specified key or value
     var database_ref = database.ref("responses").equalTo("travelMiles")
     
     var cost = 0.55;
+    // reading the travel miles data from Firebase database
     var miles = database_ref.on("value", function(snapshot) {
         var data = snapshot.val();
         console.log(data);
@@ -493,6 +495,24 @@ function calcTravel() {
     });
     
     var travelCost = cost * miles;
+}
+
+function calcServicesCost() {
+    // equalTo() method returns items equal to the specified key or value
+    var database_ref = database.ref("responses").equalTo("nonBrideMakeup", "nonBrideHair", "nonBrideHairSetting", "nonBrideHairStyling", "children", "brideMakeup", "brideHair", "brideHairSetting", "brideHairStyling", "nonWeddingMakeup", "nonWeddingHair", "nonWeddingHairSetting", "nonWeddingHairStyling")
+    
+    
+    // reading the data of the total amount of services from Firebase
+    var totalServices = database_ref.on("value", function(snapshot) {
+        var data = snapshot.val();
+        for(let i in data) {
+            var total += data[i];
+        }
+        console.log(data);
+    }, function(error) {
+        console.log("Error: " + error.code);
+    });
+    
 }
 
 /*Calculating the wedding services*/
