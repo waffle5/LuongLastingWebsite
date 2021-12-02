@@ -18,7 +18,7 @@
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
-    
+        
         <!-- load JavaScript -->
         <script src="LuongLastingJS.js"></script>
     
@@ -29,33 +29,37 @@
             <!-- Navigation bar here -->
             <div class="container">
         <br>
-        <!-- Nav tabs on the navigation bar -->
+        <!-- Nav tabs on the navigation bar -->              
+
         <ul class="nav nav-tabs fixed-top bg-dark navbar-dark" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" onclick="showArtists()" data-toggle="tab" href="#artists">Artist</a>
+                <a class="nav-link active">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" onclick="showResponses()"data-toggle="tab" href="#responses">Responses</a>
+                <a class="nav-link"  href='Artists.html'>Artist</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" onclick="showClients()" data-toggle="tab" href="#clients">Clients</a>
+                <a class="nav-link"  href="Responses.html">Responses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="Client.html">Clients</a>
             </li>
           <li class = "nav-item">
-            <a class ="nav-link" onclick="showPaySummary()" data-toggle="tab" href="#summary">Pay Summary</a>
+            <a class ="nav-link"  href="PaySummary.html">Pay Summary</a>
               
           </li>
         </ul>
-        <!-- Tab content -->
-        <div class="tab-content">
-            <div id="artists" class="container tab-pane active"><br>
-                <h3>Artist Information</h3> 
                 
-                <!--<a href="Artists.html"></a>-->
-                <p id = "artist"></p>
-                
-                
+        <!-- Tab content-->
+       <!--<div class="tab-content">
+            <div id="home" class ="container tab-pane active"><br>
+                <h1>Form</h1>
             </div>
-            <div id="responses" class="container tab-pane fade"><br>
+            <!--<div  class="container tab-pane fade"><br>
+                <div id="artist"></div>
+                               
+            </div>-->
+           <!-- <div id="responses" class="container tab-pane fade"><br>
                 <h3>Responses</h3>   
             </div>
             <div id="clients" class="container tab-pane fade"><br>
@@ -64,9 +68,15 @@
             </div>
           <div id ="summary" class="container tab-pane fade"><br>
             <h3>Pay Summary</h3>
-            <p id="summaryOfPayment"></p>
+            <table>
+                <tr>
+                    <th>Services Name</th>
+                    <th>Amount of Services</th>
+                    <th>Total</th>
+                </tr>
+            </table>
         </div>    
-    </div>
+    </div> -->
                 <!-- End of Navbar-->
             <h1 class = "fw-bold" id="recordServicesTitle">Record Wedding Service</h1>
             
@@ -292,6 +302,7 @@
                     </div>
                 </form>
             </div>
+        </div>
         </div>
 </body>
     
