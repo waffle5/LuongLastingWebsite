@@ -45,8 +45,70 @@
           </li>
         </ul><br>
         </div>
-
+        <!-- Navigation bar ends here -->    
     
+        <!-- Edit Modal -->
+        <div class="modal fade" id="editClient" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Client</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                    
+                <input type="hidden" class="form-control" id="edit_client_id">
+                    
+              <div class="mb-3">
+                <label for="edit_client_first_name" class="form-label fw-bold">First Name</label>
+                <input type="text" class="form-control" id="edit_client_first_name" placeholder="First Name" required>
+              </div>
+                
+              <div class="mb-3">
+                <label for="edit_client_last_name" class="form-label fw-bold">Last Name</label>
+                <input type="text" class="form-control" id="edit_client_last_name" placeholder="Last Name">
+              </div> 
+                
+              <div class="mb-3">
+                <label for="edit_client_email" class="form-label fw-bold">Email</label>
+                <input type="email" class="form-control" id="edit_client_email" placeholder="Email">
+              </div> 
+                    </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button onclick= "editClientBtn()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Edit Modal End -->
+        
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteClient" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Client</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input type="hidden" class="form-control" id="delete_client_id">
+                  <p id = deleteModalBody></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button onclick= "deleteClientBtn()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Delete </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delte Modal End -->
+        
+        
            <div class = "container-fluid">
               <br><a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                 Add Client Form
@@ -87,6 +149,8 @@
               <th scope="col">First Name</th>
               <th scope="col">Last Name</th>
               <th scope="col">Email</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
         
             </tr>
             </thead>

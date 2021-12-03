@@ -119,6 +119,7 @@ function saveResponsev1() {
         comments: $("#comments").val()
     }
     database_ref.child('responses/' + response_data.responseID).set(response_data)
+    database_ref.child('artists/' + response_data.artist).child('responses/' +response_data.responseID ).set(response_data)
     alert('Services recorded!!')
 }
 
@@ -136,7 +137,6 @@ function addClient() {
     
     database_ref.child('clients/' + client_data.clientID).set(client_data)
     
-    alert('Client Added!!')
     
 }
 
@@ -392,12 +392,17 @@ function getAllArtist() {
     })
 }
 
+
+
 function getAllClients () {
+        
+    
         database.ref('clients').on('value',
                                 function(AllRecords){
         $("#clientTableBody").empty()
         AllRecords.forEach(
             function(CurrentRecord){
+                var clientId = CurrentRecord.val().clientID
                 var firstName = CurrentRecord.val().first_name
                 var lastName = CurrentRecord.val().last_name
                 var email = CurrentRecord.val().email
@@ -408,16 +413,24 @@ function getAllClients () {
                 var td1 = document.createElement('td')
                 var td2 = document.createElement('td')
                 var td3 = document.createElement('td')
-
+                var td4 = document.createElement('td')
+                var td5 = document.createElement('td')
+                var td6 = document.createElement('td')             
                 
-                td1.innerHTML = firstName
-                td2.innerHTML = lastName
-                td3.innerHTML = email
+                td1.innerHTML = '<span class="client-data-firstName">'+firstName+'</span>'
+                td2.innerHTML = '<span class="client-data-lastName">'+lastName+'</span>'
+                td3.innerHTML = '<span class="client-data-email">'+email+'</span>'
+                td4.innerHTML = '<button type="button" class="btn btn-primary edit-client-button" data-bs-toggle="modal" data-bs-target="#editClient">Edit Client</button>'
+                td5.innerHTML = '<button type="button" class="btn btn-primary delete-client-button" data-bs-toggle="modal" data-bs-target="#deleteClient">Delete Cient</button>'
+                td6.innerHTML = '<span class="client-data-clientId">' +clientId+'</span>'
+                td6.style.display = "none"
 
-                
                 trow.appendChild(td1)
                 trow.appendChild(td2)
                 trow.appendChild(td3)
+                trow.appendChild(td4)
+                trow.appendChild(td5)
+                trow.appendChild(td6)
 
                 tbody.appendChild(trow)
                 
@@ -425,6 +438,55 @@ function getAllClients () {
             }
         )
     })
+}
+
+//populate popup with client information
+$(document).on("click",".edit-client-button", function(){
+    $btn = $(this);
+    $tr = $btn.closest('tr');
+    var first = $tr.find('.client-data-firstName').text();
+    var last = $tr.find('.client-data-lastName').text();
+    var email = $tr.find('.client-data-email').text();
+    var id = $tr.find('.client-data-clientId').text();
+    $("#edit_client_first_name").val(first)
+    $("#edit_client_last_name").val(last)
+    $("#edit_client_email").val(email)
+    $("#edit_client_id").val(id)
+    
+})
+
+function editClientBtn() {
+    
+    var database_ref = database.ref()
+    
+    var client_data = {
+        clientID: $("#edit_client_id").val(), 
+        first_name : $("#edit_client_first_name").val(),
+        last_name : $("#edit_client_last_name").val(),
+        email : $("#edit_client_email").val(),
+    }
+    
+    database_ref.child('clients/' + client_data.clientID).set(client_data)
+
+    
+}
+
+//delete client
+$(document).on("click",".delete-client-button", function(){
+    $btn = $(this);
+    $tr = $btn.closest('tr');
+    var first = $tr.find('.client-data-firstName').text();
+    var last = $tr.find('.client-data-lastName').text();
+    var id = $tr.find('.client-data-clientId').text();
+    $("#delete_client_id").val(id)
+    
+    $("#deleteModalBody").text('Are you sure you want to delete ' + first + ' ' + last + '?')   
+})
+
+function deleteClientBtn() {
+    var database_ref = database.ref()
+    var id = $("#delete_client_id").val()
+    database_ref.child('clients/' + id).remove()
 }
 
 function eventInfoNext() {
