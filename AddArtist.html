@@ -46,6 +46,136 @@
           </li>
         </ul><br>
         </div>
+        <!-- Navigation bar ends here -->
+        
+        <!-- Edit Modal -->
+        <div class="modal fade" id="editArtistModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Artist</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">    
+                
+                  <form>
+                      
+                      <input type="hidden" class="form-control" id="edit_artist_id">
+                
+              <div class="mb-3">
+                <label for="editartistFirstName" class="form-label fw-bold">First Name</label>
+                <input type="text" class="form-control" id="editartistFirstName" placeholder="First Name" required>
+              </div>
+                
+              <div class="mb-3">
+                <label for="editartistLastName" class="form-label fw-bold">Last Name</label>
+                <input type="text" class="form-control" id="editartistLastName" placeholder="Last Name">
+              </div> 
+                
+              <div class="mb-3">
+                <label for="editartistNonBridePayMakeUp" class="form-label fw-bold">Non-Bridal Wedding Pay (Makeup)</label>
+                <input type="number" class="form-control" id="editartistNonBridePayMakeUp" placeholder="Non-Bridal Wedding Pay (Makeup)">
+              </div>
+                
+              <div class="mb-3">
+                <label for="editartistNonBridePayHair" class="form-label fw-bold">Non-Bridal Wedding Pay (Hair)</label>
+                <input type="text" class="form-control" id="editartistNonBridePayHair" placeholder="Non-Bridal Wedding Pay (Hair)">
+              </div>                
+                
+               <div class="mb-3">
+                <label for="editartistNonBridePayHairSetting" class="form-label fw-bold">Non-Bridal Wedding Hair Setting Only Pay</label>
+                <input type="number" class="form-control" id="editartistNonBridePayHairSetting" placeholder="Non-Bridal Wedding Hair Setting Only Pay">
+              </div>
+                
+              <div class="mb-3">
+                <label for="editartistNonBridePayHairStyling" class="form-label fw-bold">Non-Bridal Wedding Hair Styling Only Pay</label>
+                <input type="number" class="form-control" id="editartistNonBridePayHairStyling" placeholder="Non-Bridal Wedding Hair Styling Only Pay">
+              </div> 
+                
+              <div class="mb-3">
+                <label for="editartistChildrenPay" class="form-label fw-bold">Children Pay</label>
+                <input type="number" class="form-control" id="editartistChildrenPay" placeholder="Children Pay">
+              </div>       
+                
+              <div class="mb-3">
+                <label for="editartistBridePayMakeUp" class="form-label fw-bold">Bridal Pay (Makeup)</label>
+                <input type="number" class="form-control" id="editartistBridePayMakeUp" placeholder="Bridal Pay (Makeup)">
+              </div>
+                
+              <div class="mb-3">
+                <label for="editartistBridePayHair" class="form-label fw-bold">Bridal Pay (Hair)</label>
+                <input type="number" class="form-control" id="editartistBridePayHair" placeholder="Bridal Pay (Hair)">
+              </div>
+                
+               <div class="mb-3">
+                <label for="editartistBridePayHairSetting" class="form-label fw-bold">Bride Wedding Hair Setting Only Pay</label>
+                <input type="number" class="form-control" id="editartistBridePayHairSetting" placeholder="Bride Wedding Hair Setting Only Pay">
+              </div>
+                
+              <div class="mb-3">
+                <label for="editartistBridePayHairStyling" class="form-label fw-bold">Bride Wedding Hair Styling Only Pay</label>
+                <input type="number" class="form-control" id="editartistBridePayHairStyling" placeholder="Bride Wedding Hair Styling Only Pay">
+              </div> 
+                
+              <div class="mb-3">
+                <label for="editartistNonWeddingPayMakeUp" class="form-label fw-bold">Non-Wedding Pay (Makeup)</label>
+                <input type="number" class="form-control" id="editartistNonWeddingPayMakeUp" placeholder="Non-Wedding Pay (Makeup)">
+              </div>
+                
+              <div class="mb-3">
+                <label for="editartistNonWeddingPayHair" class="form-label fw-bold">Non-Wedding Pay (Hair)</label>
+                <input type="text" class="form-control" id="editartistNonWeddingPayHair" placeholder="Non-Wedding Pay (Hair)">
+              </div>                
+                
+               <div class="mb-3">
+                <label for="editartistNonWeddingPayHairSetting" class="form-label fw-bold">Non-Wedding Hair Setting Only Pay</label>
+                <input type="number" class="form-control" id="editartistNonWeddingPayHairSetting" placeholder="Non-Wedding Hair Setting Only Pay">
+              </div>
+                
+              <div class="mb-3">
+                <label for="editartistNonWeddingPayHairStyling" class="form-label fw-bold">Non-Wedding Hair Styling Only Pay</label>
+                <input type="number" class="form-control" id="editartistNonWeddingPayHairStyling" placeholder="Non-Wedding Hair Styling Only Pay">
+              </div> 
+                
+              <div class="mb-3">
+                <label for="editartistDistanceToStudio" class="form-label fw-bold">Distance To Studio</label>
+                <input type="number" class="form-control" id="editartistDistanceToStudio" placeholder="Distance to studio">
+              </div>       
+    
+            </form>
+                  
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button onclick= "editArtistBtn()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Edit Modal End -->
+        
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteArtistModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Artist</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input type="hidden" class="form-control" id="delete_artist_id">
+                  <p id = "deleteArtistModalBody"></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button onclick= "deleteArtistBtn()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Delete </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delte Modal End -->
         
         <div class = "container-fluid">
             <p>
