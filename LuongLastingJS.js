@@ -119,6 +119,7 @@ function saveResponsev1() {
         comments: $("#comments").val()
     }
     database_ref.child('responses/' + response_data.responseID).set(response_data)
+    database_ref.child('artists/' + response_data.artist).child('responses/' +response_data.responseID ).set(response_data)
     alert('Services recorded!!')
 }
 
@@ -136,7 +137,6 @@ function addClient() {
     
     database_ref.child('clients/' + client_data.clientID).set(client_data)
     
-    alert('Client Added!!')
     
 }
 
@@ -306,6 +306,7 @@ function getAllArtist() {
         $("#artistTableBody").empty()
         AllRecords.forEach(
             function(CurrentRecord){
+                var artistId = CurrentRecord.val().artistID
                 var brideHairPay = CurrentRecord.val().bride_hair_pay
                 var brideHairSettingPay = CurrentRecord.val().bride_hair_setting_pay
                 var brideHairStylingPay = CurrentRecord.val().bride_hair_styling_pay
@@ -342,24 +343,31 @@ function getAllArtist() {
                 var td14 = document.createElement('td')
                 var td15 = document.createElement('td')
                 var td16 = document.createElement('td')
-                
-                td1.innerHTML = firstName
-                td2.innerHTML = lastName
-                td3.innerHTML = nonBrideMakeupPay
-                td4.innerHTML = nonBrideHairPay
-                td5.innerHTML = nonBrideHairSettingPay
-                td6.innerHTML = nonBrideHairStylingPay
-                td7.innerHTML = childrenPay
-                td8.innerHTML = brideMakeupPay
-                td9.innerHTML = brideHairPay
-                td10.innerHTML = brideHairSettingPay
-                td11.innerHTML = brideHairStylingPay
-                td12.innerHTML = nonWeddingMakeupPay
-                td13.innerHTML = nonWeddingHairPay
-                td14.innerHTML = nonWeddingHairSettingPay
-                td15.innerHTML = nonWeddingHairStylingPay
-                td16.innerHTML = distanceToStudio
-                
+                var td17 = document.createElement('td')
+                var td18 = document.createElement('td')
+                var td19 = document.createElement('td')
+                     
+                td1.innerHTML = '<span class="artist-data-firstName">'+firstName+'</span>'
+                td2.innerHTML = '<span class="artist-data-lastName">'+lastName+'</span>'
+                td3.innerHTML = '<span class="artist-data-nonBrideMakeupPay">'+nonBrideMakeupPay+'</span>'
+                td4.innerHTML = '<span class="artist-data-nonBrideHairPay">'+nonBrideHairPay+'</span>'
+                td5.innerHTML = '<span class="artist-data-nonBrideHairSettingPay">'+nonBrideHairSettingPay+'</span>'
+                td6.innerHTML = '<span class="artist-data-nonBrideHairStylingPay">'+nonBrideHairStylingPay+'</span>'
+                td7.innerHTML = '<span class="artist-data-childrenPay">'+childrenPay+'</span>'
+                td8.innerHTML = '<span class="artist-data-brideMakeupPay">'+brideMakeupPay+'</span>'
+                td9.innerHTML = '<span class="artist-data-brideHairPay">'+brideHairPay+'</span>'
+                td10.innerHTML = '<span class="artist-data-brideHairSettingPay">'+brideHairSettingPay+'</span>'
+                td11.innerHTML = '<span class="artist-data-brideHairStylingPay">'+brideHairStylingPay+'</span>'
+                td12.innerHTML = '<span class="artist-data-nonWeddingMakeupPay">'+nonWeddingMakeupPay+'</span>'
+                td13.innerHTML = '<span class="artist-data-nonWeddingHairPay">'+nonWeddingHairPay+'</span>'
+                td14.innerHTML = '<span class="artist-data-nonWeddingHairSettingPay">'+nonWeddingHairSettingPay+'</span>'
+                td15.innerHTML = '<span class="artist-data-nonWeddingHairStylingPay">'+nonWeddingHairStylingPay+'</span>'
+                td16.innerHTML = '<span class="artist-data-distanceToStudio">'+distanceToStudio+'</span>'
+                td17.innerHTML = '<button type="button" class="btn btn-primary edit-artist-button" data-bs-toggle="modal" data-bs-target="#editArtistModal">Edit Artist</button>'
+                td18.innerHTML = '<button type="button" class="btn btn-primary delete-artist-button" data-bs-toggle="modal" data-bs-target="#deleteArtistModal">Delete Artist</button>'
+                td19.innerHTML = '<span class="artist-data-artistId">'+artistId+'</span>'
+                td19.style.display = "none"
+                               
                 trow.appendChild(td1)
                 trow.appendChild(td2)
                 trow.appendChild(td3)
@@ -376,21 +384,127 @@ function getAllArtist() {
                 trow.appendChild(td14)
                 trow.appendChild(td15)
                 trow.appendChild(td16)
+                trow.appendChild(td17)
+                trow.appendChild(td18)
+                trow.appendChild(td19) 
                 
                 tbody.appendChild(trow)
-                
-                   
+                  
             }
         )
     })
 }
 
+//populate edit artist pop with artist information
+$(document).on("click",".edit-artist-button", function(){
+    $btn = $(this);
+    $tr = $btn.closest('tr');
+    var firstName = $tr.find('.artist-data-firstName').text();
+    var lastName = $tr.find('.artist-data-lastName').text();
+    var nonBrideMakeupPay = $tr.find('.artist-data-nonBrideMakeupPay').text();
+    var nonBrideHairPay = $tr.find('.artist-data-nonBrideHairPay').text();
+    var nonBrideHairSettingPay = $tr.find('.artist-data-nonBrideHairSettingPay').text();
+    var nonBrideHairStylingPay = $tr.find('.artist-data-nonBrideHairStylingPay').text();
+    var childrenPay = $tr.find('.artist-data-childrenPay').text();
+    var brideMakeupPay = $tr.find('.artist-data-brideMakeupPay').text();
+    var brideHairPay = $tr.find('.artist-data-brideHairPay').text();
+    var brideHairSettingPay = $tr.find('.artist-data-brideHairSettingPay').text();
+    var brideHairStylingPay = $tr.find('.artist-data-brideHairStylingPay').text();
+    var nonWeddingMakeupPay = $tr.find('.artist-data-nonWeddingMakeupPay').text();
+    var nonWeddingHairPay = $tr.find('.artist-data-nonWeddingHairPay').text();
+    var nonWeddingHairSettingPay = $tr.find('.artist-data-nonWeddingHairSettingPay').text();
+    var nonWeddingHairStylingPay = $tr.find('.artist-data-nonWeddingHairStylingPay').text();
+    var distanceToStudio = $tr.find('.artist-data-distanceToStudio').text();
+    var artistId = $tr.find('.artist-data-artistId').text();
+   
+    $("#edit_artist_id").val(artistId)
+    $("#editartistFirstName").val(firstName)
+    $("#editartistLastName").val(lastName)
+    
+    $("#editartistNonBridePayMakeUp").val(nonBrideMakeupPay)
+    $("#editartistNonBridePayHair").val(nonBrideHairPay)
+    $("#editartistNonBridePayHairSetting").val(nonBrideHairSettingPay)
+    $("#editartistNonBridePayHairStyling").val(nonBrideHairStylingPay)
+    $("#editartistChildrenPay").val(childrenPay)
+    
+    $("#editartistBridePayMakeUp").val(brideMakeupPay)
+    $("#editartistBridePayHair").val(brideHairPay)
+    $("#editartistBridePayHairSetting").val(brideHairSettingPay)
+    $("#editartistBridePayHairStyling").val(brideHairStylingPay)
+    
+    $("#editartistNonWeddingPayMakeUp").val(nonWeddingMakeupPay)
+    $("#editartistNonWeddingPayHair").val(nonWeddingHairPay)
+    $("#editartistNonWeddingPayHairSetting").val(nonWeddingHairSettingPay)
+    $("#editartistNonWeddingPayHairStyling").val(nonWeddingHairStylingPay)
+    
+    $("#editartistDistanceToStudio").val(distanceToStudio)
+      
+    
+    
+})
+
+//save edited changes for artist
+function editArtistBtn() {
+    
+    var database_ref = database.ref()
+    
+   var artist_data = {
+                artistID: $("#edit_artist_id").val(),
+                first_name : $("#editartistFirstName").val(),
+                last_name : $("#editartistLastName").val(),
+
+                nonBride_makeup_pay : $("#editartistNonBridePayMakeUp").val(),
+                nonBride_hair_pay : $("#editartistNonBridePayHair").val(),
+                nonBride_hair_setting_pay : $("#editartistNonBridePayHairSetting").val(),
+                nonBride_hair_styling_pay : $("#editartistNonBridePayHairStyling").val(),
+                children_pay: $("#editartistChildrenPay").val(),
+
+                bride_makeup_pay : $("#editartistBridePayMakeUp").val(),
+                bride_hair_pay : $("#editartistBridePayHair").val(),
+                bride_hair_setting_pay : $("#editartistBridePayHairSetting").val(),
+                bride_hair_styling_pay: $("#editartistBridePayHairStyling").val(),
+
+                nonWedding_makeup_pay : $("#editartistNonWeddingPayMakeUp").val(),
+                nonWedding_hair_pay : $("#editartistNonWeddingPayHair").val(),
+                nonWedding_hair_setting_pay : $("#editartistNonWeddingPayHairSetting").val(),
+                nonWedding_hair_styling_pay : $("#editartistNonWeddingPayHairStyling").val(),
+
+                distance_to_studio : $("#editartistDistanceToStudio").val()
+            }
+
+    database_ref.child('artists/' + artist_data.artistID).set(artist_data)
+   
+}
+
+//delete Artist
+$(document).on("click",".delete-artist-button", function(){
+    $btn = $(this);
+    $tr = $btn.closest('tr');
+    var firstName = $tr.find('.artist-data-firstName').text();
+    var lastName = $tr.find('.artist-data-lastName').text();
+    var artistId = $tr.find('.artist-data-artistId').text();
+    $("#delete_artist_id").val(artistId)
+    
+    $("#deleteArtistModalBody").text('Are you sure you want to delete ' + firstName + ' ' + lastName + '?')   
+})
+
+function deleteArtistBtn() {
+    var database_ref = database.ref()
+    var id = $("#delete_artist_id").val()
+    database_ref.child('artists/' + id).remove()
+}
+
+
+
 function getAllClients () {
+        
+    
         database.ref('clients').on('value',
                                 function(AllRecords){
         $("#clientTableBody").empty()
         AllRecords.forEach(
             function(CurrentRecord){
+                var clientId = CurrentRecord.val().clientID
                 var firstName = CurrentRecord.val().first_name
                 var lastName = CurrentRecord.val().last_name
                 var email = CurrentRecord.val().email
@@ -401,16 +515,24 @@ function getAllClients () {
                 var td1 = document.createElement('td')
                 var td2 = document.createElement('td')
                 var td3 = document.createElement('td')
-
+                var td4 = document.createElement('td')
+                var td5 = document.createElement('td')
+                var td6 = document.createElement('td')             
                 
-                td1.innerHTML = firstName
-                td2.innerHTML = lastName
-                td3.innerHTML = email
+                td1.innerHTML = '<span class="client-data-firstName">'+firstName+'</span>'
+                td2.innerHTML = '<span class="client-data-lastName">'+lastName+'</span>'
+                td3.innerHTML = '<span class="client-data-email">'+email+'</span>'
+                td4.innerHTML = '<button type="button" class="btn btn-primary edit-client-button" data-bs-toggle="modal" data-bs-target="#editClient">Edit Client</button>'
+                td5.innerHTML = '<button type="button" class="btn btn-primary delete-client-button" data-bs-toggle="modal" data-bs-target="#deleteClient">Delete Cient</button>'
+                td6.innerHTML = '<span class="client-data-clientId">' +clientId+'</span>'
+                td6.style.display = "none"
 
-                
                 trow.appendChild(td1)
                 trow.appendChild(td2)
                 trow.appendChild(td3)
+                trow.appendChild(td4)
+                trow.appendChild(td5)
+                trow.appendChild(td6)
 
                 tbody.appendChild(trow)
                 
@@ -419,6 +541,57 @@ function getAllClients () {
         )
     })
 }
+
+//populate edit client popup with client information
+$(document).on("click",".edit-client-button", function(){
+    $btn = $(this);
+    $tr = $btn.closest('tr');
+    var first = $tr.find('.client-data-firstName').text();
+    var last = $tr.find('.client-data-lastName').text();
+    var email = $tr.find('.client-data-email').text();
+    var id = $tr.find('.client-data-clientId').text();
+    $("#edit_client_first_name").val(first)
+    $("#edit_client_last_name").val(last)
+    $("#edit_client_email").val(email)
+    $("#edit_client_id").val(id)
+    
+})
+
+//save edited changes for client
+function editClientBtn() {
+    
+    var database_ref = database.ref()
+    
+    var client_data = {
+        clientID: $("#edit_client_id").val(), 
+        first_name : $("#edit_client_first_name").val(),
+        last_name : $("#edit_client_last_name").val(),
+        email : $("#edit_client_email").val(),
+    }
+    
+    database_ref.child('clients/' + client_data.clientID).set(client_data)
+
+    
+}
+
+//delete client
+$(document).on("click",".delete-client-button", function(){
+    $btn = $(this);
+    $tr = $btn.closest('tr');
+    var first = $tr.find('.client-data-firstName').text();
+    var last = $tr.find('.client-data-lastName').text();
+    var id = $tr.find('.client-data-clientId').text();
+    $("#delete_client_id").val(id)
+    
+    $("#deleteClientModalBody").text('Are you sure you want to delete ' + first + ' ' + last + '?')   
+})
+
+function deleteClientBtn() {
+    var database_ref = database.ref()
+    var id = $("#delete_client_id").val()
+    database_ref.child('clients/' + id).remove()
+}
+
 
 function eventInfoNext() {
     $("#eventInfo-section").hide()
