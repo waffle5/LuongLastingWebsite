@@ -656,7 +656,7 @@ function populateArtistList() {
 
 function calcTravel() {
     // equalTo() method returns items equal to the specified key or value
-    var database_ref = database.ref.child('artists/' + addArtist().artistID).child('responses/' + saveResponsev1().responseID).equalTo('travelMiles')
+    var database_ref = database.ref('artists/' + addArtist().artistID).child('responses/' + saveResponsev1().responseID).equalTo('travelMiles')
     
     var cost = 0.55;
     // reading the travel miles data from Firebase database
@@ -672,7 +672,7 @@ function calcTravel() {
 
 function calcServicesAndCosts() {
     // equalTo() method returns items equal to the specified key or value
-    var database_ref = database.ref.child("artists/" + addArtist().artistID).child("responses/" + saveResponsev1().responseID).equalTo("nonBrideMakeup", "nonBrideHair", "nonBrideHairSetting", "nonBrideHairStyling", "children", "brideMakeup", "brideHair", "brideHairSetting", "brideHairStyling", "nonWeddingMakeup", "nonWeddingHair", "nonWeddingHairSetting", "nonWeddingHairStyling")
+    var database_ref = database.ref("artists/" + addArtist().artistID).child("responses/" + saveResponsev1().responseID).equalTo("nonBrideMakeup", "nonBrideHair", "nonBrideHairSetting", "nonBrideHairStyling", "children", "brideMakeup", "brideHair", "brideHairSetting", "brideHairStyling", "nonWeddingMakeup", "nonWeddingHair", "nonWeddingHairSetting", "nonWeddingHairStyling")
     
     
     // reading the data of all services from Firebase
@@ -682,7 +682,7 @@ function calcServicesAndCosts() {
         console.log("Error: " + error.code);
     });
     
-    var database_ref2 = database.ref.child("artists/" + addArtist().artistID).equalTo("nonBride_makeup_pay", "nonBride_hair_pay", "nonBride_hair_setting_pay", "nonBride_hair_styling_pay", "children_pay", "bride_makeup_pay", "bride_hair_pay", "bride_hair_setting_pay", "bride_hair_styling_pay", "nonWedding_makeup_pay", "nonWedding_hair_pay", "nonWedding_hair_setting_pay", "nonWedding_hair_styling_pay")
+    var database_ref2 = database.ref("artists/" + addArtist().artistID).equalTo("nonBride_makeup_pay", "nonBride_hair_pay", "nonBride_hair_setting_pay", "nonBride_hair_styling_pay", "children_pay", "bride_makeup_pay", "bride_hair_pay", "bride_hair_setting_pay", "bride_hair_styling_pay", "nonWedding_makeup_pay", "nonWedding_hair_pay", "nonWedding_hair_setting_pay", "nonWedding_hair_styling_pay")
     
     // reading the data of the cost of each service from Firebase
     var servicesCost = database_ref2.on("value", function(snapshot) {
