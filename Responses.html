@@ -11,19 +11,24 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
         
         
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        
         <!-- load firebase -->
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
-    
+        
         <!-- load JavaScript -->
         <script src="LuongLastingJS.js"></script>
     
     </head>
-    
-    <body>
-        <!-- Navigation bar here -->
-        <div class="container"><br>
+
+    <body onload="loadResponsesPage()">
+        <div class = "container-fluid" id = "services-form">
+            <!-- Navigation bar here -->
+        
+        <br>
         <!-- Nav tabs on the navigation bar -->              
 
         <ul class="nav nav-tabs fixed-top bg-dark navbar-dark" role="tablist">
@@ -31,7 +36,7 @@
                 <a class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link "  href='AddArtist.html'>Artist</a>
+                <a class="nav-link"  href='AddArtist.html'>Artist</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active"  href="Responses.html">Responses</a>
@@ -44,11 +49,549 @@
               
           </li>
         </ul><br>
+            
+        <!-- Navigation bar ends here -->
+            
+            <!-- Edit Modal -->
+        <div class="modal fade" id="editResponseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Response</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">   
+            <div class = "well">
+                <h1 class = "fw-bold" id="recordServicesTitle">Edit Recorded Service</h1>
+                <form id="myform">
+                    <div id= "eventInfoModal-section">
+                        
+                       
+                        <!-- Email Input -->
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
+                        </div>
+                        <h3 class = "fw-bold">Event information</h3>
+                         <input type="hidden" class="form-control" id="edit-responseId">
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-inputEmail" class="form-label fw-bold">Email address</label>
+                            <input type="email" class="form-control" id="edit-inputEmail" placeholder = "Email">
+                          </div>
+                         </div>
+                        <!-- Artist Select -->
+                        <div class="form-group">
+                          <div class="mb-3">
+                            <label for="edit-artist" class="form-label fw-bold">Artist</label>
+                            <select class = "form-control" id="edit-artist">
+                            </select>
+                          </div>
+                      </div>
+                     
+                        <!-- Client Select -->
+                      <div class="form-group">
+                          <div class="mb-3">
+                            <label for="edit-client" class="form-label fw-bold">Bride's/Client's Name</label>
+                            <select class = "form-control" id="edit-client">
+                            </select>
+                          </div>
+                      </div>
+                        <!-- Date of Event -->
+                      <div class="form-group">
+                          <div class="mb-3">
+                            <label for="edit-dateOfEvent" class="form-label fw-bold">Date of Event</label>
+                              <input type="date" class="form-control" id="edit-dateOfEvent">
+                          </div>
+                      </div>
+                        <button onclick="eventInfoModalNext()" type="button" class="btn btn-primary">Next</button>
+        
+                    </div>
+                    
+                    <div id="NonBrideModal-section" style="display: none;">
+                        <!-- Non Bride Section -->
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
+                        </div>
+                      <h3 class = "fw-bold">Non-Bride Services</h3>
+                        <!-- Wedding Makeup (non bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-nonBrideMakeup" class="form-label fw-bold">Makeup Non-Bride</label>
+                            <input type="number" class="form-control" id="edit-nonBrideMakeup" placeholder = "0">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair (non bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-nonBrideHair" class="form-label fw-bold">Hair Non-Bride</label>
+                            <input type="number" class="form-control" id="edit-nonBrideHair" placeholder = "0">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair setting only (non bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-nonBrideHairSetting" class="form-label fw-bold">Hair Setting Only Non-Bride</label>
+                            <input type="number" class="form-control" id="edit-nonBrideHairSetting" placeholder = "0">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair styling only (non bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-nonBrideHairStyling" class="form-label fw-bold">Hair Styling Only Non-Bride</label>
+                            <input type="number" class="form-control" id="edit-nonBrideHairStyling" placeholder = "0">
+                          </div>
+                         </div>
+                        <!-- Children -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-children" class="form-label fw-bold">Children (7 or younger)</label>
+                            <input type="number" class="form-control" id="edit-children" placeholder = "0">
+                          </div>
+                         </div>
+                        <button onclick="nonBrideModalPrev()" type="button" class="btn btn-primary">Previous</button>
+                        <button onclick="nonBrideModalNext()" type="button" class="btn btn-primary">Next</button>    
+                    </div>
+                    
+                    <div id = "brideModal-section" style="display: none;">
+                        <!-- Bride Section -->
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
+                        </div>
+                        <h3 class = "fw-bold">Bride Services</h3>
+                                            <!-- Wedding Makeup (bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-brideMakeup" class="form-label fw-bold">Makeup Bride</label>
+                            <input type="number" class="form-control" id="edit-brideMakeup" placeholder = "0">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair (bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-brideHair" class="form-label fw-bold">Hair Bride</label>
+                            <input type="number" class="form-control" id="edit-brideHair" placeholder = "0">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair setting only (bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-brideHairSetting" class="form-label fw-bold">Hair Setting Only Bride</label>
+                            <input type="number" class="form-control" id="edit-brideHairSetting" placeholder = "0">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair styling only (bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-brideHairStyling" class="form-label fw-bold">Hair Styling Only Bride</label>
+                            <input type="number" class="form-control" id="edit-brideHairStyling" placeholder = "0">
+                          </div>
+                         </div>
+                        <button onclick="brideModalPrev()" type="button" class="btn btn-primary">Previous</button>
+                        <button onclick="brideModalNext()" type="button" class="btn btn-primary">Next</button>
+                        
+                    </div>
+                    
+                    <div id="NonWeddingModal-Section" style="display: none;">
+                        <!-- Non Wedding / Trials -->
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                        </div>
+                        <h3 class = "fw-bold">Non Wedding / Trials</h3>
+                        <!-- Wedding Makeup (Non Wedding / Trials) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-nonWeddingMakeup" class="form-label fw-bold">Makeup Non Wedding / Trials</label>
+                            <input type="number" class="form-control" id="edit-nonWeddingMakeup" placeholder = "0">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair (Non Wedding / Trials) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-nonWeddingHair" class="form-label fw-bold">Hair Non Wedding / Trials</label>
+                            <input type="number" class="form-control" id="edit-nonWeddingHair" placeholder = "0">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair setting only (Non Wedding / Trials) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-nonWeddingHairSetting" class="form-label fw-bold">Hair Setting Only Non Wedding / Trials</label>
+                            <input type="number" class="form-control" id="edit-nonWeddingHairSetting" placeholder = "0">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair styling only (Non Wedding / Trials) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-nonWeddingHairStyling" class="form-label fw-bold">Hair Styling Only Non Wedding / Trials</label>
+                            <input type="number" class="form-control" id="edit-nonWeddingHairStyling" placeholder = "0">
+                          </div>
+                         </div>
+                        <button onclick="nonNonWedingModalPrev()" type="button" class="btn btn-primary">Previous</button>
+                        <button onclick="nonWeddingModalNext()" type="button" class="btn btn-primary">Next</button>
+                        
+                    </div>
+                        
+                    <div id ="miscModal-section" style="display: none;">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                        </div>
+                        <!-- Payment Method -->
+                        <h3 class = "fw-bold">Payment Method Sent to Luong Lasting</h3>
+                        <p>account is @luonglasting and luonglasting@gmail.com for electronic payments </p>    
+                      <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input fw-bold" id="edit-cashCheck">
+                        <label class="form-check-label" for="edit-cashCheck">Cash/Check in studio drawer</label>
+                      </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input fw-bold" id="edit-quickPayZelle">
+                            <label class="form-check-label" for="edit-quickPayZelle">Chase QuickPay/Zelle</label>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input fw-bold" id="edit-venmo">
+                            <label class="form-check-label" for="edit-venmo">Venmo</label>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input fw-bold" id="edit-paypal">
+                            <label class="form-check-label" for="edit-paypal">Paypal</label>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input fw-bold" id="edit-noPayment">
+                            <label class="form-check-label" for="edit-noPayment">No payment collected</label>
+                        </div>
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-ammountColleted" class="form-label fw-bold">Amount collected from client</label>
+                            <input type="number" class="form-control" id="edit-ammountColleted" placeholder = "0">
+                          </div>
+                         </div>
+
+                        <!-- Travel -->
+                        <h3 class = "fw-bold">Travel</h3>
+                        <p>Enter the actual miles to destination from home (one-way), round UP to a whole number. Please enter numbers only (no text!), miles to studio will automatically be deducted and calculated for round trip. </p> 
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="edit-travelMiles" class="form-label fw-bold">Distance to event</label>
+                            <input type="number" class="form-control" id="edit-travelMiles" placeholder = "Miles">
+                          </div>
+                         </div>
+
+                        <!-- Comments -->
+                        <h3 class = "fw-bold">Comments</h3>
+                        <div class = "form-group">
+                          <div class="mb-3">
+
+                            <input type="text" class="form-control" id="edit-comments" placeholder = "Comments">
+                          </div>
+                         </div>
+                        <button onclick="miscModalPrev()" type="button" class="btn btn-primary">Previous</button>
+                    </div>
+                </form>
+            </div>
+                </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button onclick= "editResponseBtn()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+              </div>
+            </div>
+          </div>
         </div>
 
-    
-           <div class = "container-fluid">
-             <h2>Responses</h2>
+        <!-- Edit Modal End -->
+            
+            <!-- Delete Modal -->
+        <div class="modal fade" id="deleteResponseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Response</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+            <div class="modal-body">
+                <input type="hidden" class="form-control" id="delete_response_id">
+                <input type="hidden" class="form-control" id="delete_response_artist_id">
+                  <p id = "deleteResponseModalBody"></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button onclick= "deleteResponseBtn()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Delete </button>
+              </div>
+            </div>
+          </div>
         </div>
-    </body>
+
+        <!-- Delte Modal End -->
+            
+            <br><a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Add Response Form
+              </a><p></p>
+            <div class="collapse" id="collapseExample">
+            <div class = "well">
+                <h1 class = "fw-bold" id="recordServicesTitle">Record Service</h1>
+                <form id="myform">
+                    <div id= "eventInfo-section">
+                        <!-- Email Input -->
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
+                        </div>
+                        <h3 class = "fw-bold">Event information</h3>
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="inputEmail" class="form-label fw-bold">Email address</label>
+                            <input type="email" class="form-control" id="inputEmail" placeholder = "Email">
+                          </div>
+                         </div>
+                        <!-- Artist Select -->
+                        <div class="form-group">
+                          <div class="mb-3">
+                            <label for="artist" class="form-label fw-bold">Artist</label>
+                            <select class = "form-control" id="artist">
+                            </select>
+                          </div>
+                      </div>
+                     
+                        <!-- Client Select -->
+                      <div class="form-group">
+                          <div class="mb-3">
+                            <label for="client" class="form-label fw-bold">Bride's/Client's Name</label>
+                            <select class = "form-control" id="client">
+                            </select>
+                          </div>
+                      </div>
+                        <!-- Date of Event -->
+                      <div class="form-group">
+                          <div class="mb-3">
+                            <label for="dateOfEvent" class="form-label fw-bold">Date of Event</label>
+                              <input type="date" class="form-control" id="dateOfEvent">
+                          </div>
+                      </div>
+                        <button onclick="eventInfoNext()" type="button" class="btn btn-primary">Next</button>
+        
+                    </div>
+                    
+                    <div id="NonBride-section" style="display: none;">
+                        <!-- Non Bride Section -->
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
+                        </div>
+                      <h3 class = "fw-bold">Non-Bride Services</h3>
+                        <!-- Wedding Makeup (non bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="nonBrideMakeup" class="form-label fw-bold">Makeup Non-Bride</label>
+                            <input type="number" class="form-control" id="nonBrideMakeup" placeholder = "Number completed">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair (non bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="nonBrideHair" class="form-label fw-bold">Hair Non-Bride</label>
+                            <input type="number" class="form-control" id="nonBrideHair" placeholder = "Number completed">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair setting only (non bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="nonBrideHairSetting" class="form-label fw-bold">Hair Setting Only Non-Bride</label>
+                            <input type="number" class="form-control" id="nonBrideHairSetting" placeholder = "Number completed">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair styling only (non bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="nonBrideHairStyling" class="form-label fw-bold">Hair Styling Only Non-Bride</label>
+                            <input type="number" class="form-control" id="nonBrideHairStyling" placeholder = "Number completed">
+                          </div>
+                         </div>
+                        <!-- Children -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="children" class="form-label fw-bold">Children (7 or younger)</label>
+                            <input type="number" class="form-control" id="children" placeholder = "Number completed">
+                          </div>
+                         </div>
+                        <button onclick="nonBridePrev()" type="button" class="btn btn-primary">Previous</button>
+                        <button onclick="nonBrideNext()" type="button" class="btn btn-primary">Next</button>    
+                    </div>
+                    
+                    <div id = "bride-section" style="display: none;">
+                        <!-- Bride Section -->
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
+                        </div>
+                        <h3 class = "fw-bold">Bride Services</h3>
+                                            <!-- Wedding Makeup (bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="brideMakeup" class="form-label fw-bold">Makeup Bride</label>
+                            <input type="number" class="form-control" id="brideMakeup" placeholder = "Number completed">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair (bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="brideHair" class="form-label fw-bold">Hair Bride</label>
+                            <input type="number" class="form-control" id="brideHair" placeholder = "Number completed">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair setting only (bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="brideHairSetting" class="form-label fw-bold">Hair Setting Only Bride</label>
+                            <input type="number" class="form-control" id="brideHairSetting" placeholder = "Number completed">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair styling only (bride) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="brideHairStyling" class="form-label fw-bold">Hair Styling Only Bride</label>
+                            <input type="number" class="form-control" id="brideHairStyling" placeholder = "Number completed">
+                          </div>
+                         </div>
+                        <button onclick="bridePrev()" type="button" class="btn btn-primary">Previous</button>
+                        <button onclick="brideNext()" type="button" class="btn btn-primary">Next</button>
+                        
+                    </div>
+                    
+                    <div id="NonWedding-Section" style="display: none;">
+                        <!-- Non Wedding / Trials -->
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                        </div>
+                        <h3 class = "fw-bold">Non Wedding / Trials</h3>
+                        <!-- Wedding Makeup (Non Wedding / Trials) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="nonWeddingMakeup" class="form-label fw-bold">Makeup Non Wedding / Trials</label>
+                            <input type="number" class="form-control" id="nonWeddingMakeup" placeholder = "Number completed">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair (Non Wedding / Trials) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="nonWeddingHair" class="form-label fw-bold">Hair Non Wedding / Trials</label>
+                            <input type="number" class="form-control" id="nonWeddingHair" placeholder = "Number completed">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair setting only (Non Wedding / Trials) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="nonWeddingHairSetting" class="form-label fw-bold">Hair Setting Only Non Wedding / Trials</label>
+                            <input type="number" class="form-control" id="nonWeddingHairSetting" placeholder = "Number completed">
+                          </div>
+                         </div>
+                        <!-- Wedding Hair styling only (Non Wedding / Trials) -->
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="nonWeddingHairStyling" class="form-label fw-bold">Hair Styling Only Non Wedding / Trials</label>
+                            <input type="number" class="form-control" id="nonWeddingHairStyling" placeholder = "Number completed">
+                          </div>
+                         </div>
+                        <button onclick="nonNonWedingPrev()" type="button" class="btn btn-primary">Previous</button>
+                        <button onclick="nonWeddingNext()" type="button" class="btn btn-primary">Next</button>
+                        
+                    </div>
+                        
+                    <div id ="misc-section" style="display: none;">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                        </div>
+                        <!-- Payment Method -->
+                        <h3 class = "fw-bold">Payment Method Sent to Luong Lasting</h3>
+                        <p>account is @luonglasting and luonglasting@gmail.com for electronic payments </p>    
+                      <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input fw-bold" id="cashCheck">
+                        <label class="form-check-label" for="cashCheck">Cash/Check in studio drawer</label>
+                      </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input fw-bold" id="quickPayZelle">
+                            <label class="form-check-label" for="quickPayZelle">Chase QuickPay/Zelle</label>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input fw-bold" id="venmo">
+                            <label class="form-check-label" for="venmo">Venmo</label>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input fw-bold" id="paypal">
+                            <label class="form-check-label" for="paypal">Paypal</label>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input fw-bold" id="noPayment">
+                            <label class="form-check-label" for="noPayment">No payment collected</label>
+                        </div>
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="ammountColleted" class="form-label fw-bold">Amount collected from client</label>
+                            <input type="number" class="form-control" id="ammountColleted" placeholder = "Amount">
+                          </div>
+                         </div>
+
+                        <!-- Travel -->
+                        <h3 class = "fw-bold">Travel</h3>
+                        <p>Enter the actual miles to destination from home (one-way), round UP to a whole number. Please enter numbers only (no text!), miles to studio will automatically be deducted and calculated for round trip. </p> 
+                        <div class = "form-group">
+                          <div class="mb-3">
+                            <label for="travelMiles" class="form-label fw-bold">Distance to event</label>
+                            <input type="number" class="form-control" id="travelMiles" placeholder = "Miles">
+                          </div>
+                         </div>
+
+                        <!-- Comments -->
+                        <h3 class = "fw-bold">Comments</h3>
+                        <div class = "form-group">
+                          <div class="mb-3">
+
+                            <input type="text" class="form-control" id="comments" placeholder = "Comments">
+                          </div>
+                         </div>
+                        <button onclick="miscPrev()" type="button" class="btn btn-primary">Previous</button>
+                      <button onclick="saveResponsev1()" type="button" class="btn btn-success">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+            <div class = "table-responsive"> 
+            <h2>Responses</h2>
+                <table id = "responseTable" class="table table-bordered table-s">
+            <thead class="table-light">
+            <tr>
+                <th scope="col">Artist Email</th>
+              <th scope="col">Artist</th>
+              <th scope="col">Bride/Client</th>
+              <th scope="col">Date of Event</th>
+                <th scope="col">Makeup Non-Bride</th>
+              <th scope="col">Hair Non-Bride</th>
+              <th scope="col">Hair Setting only Non-Bride</th>
+                <th scope="col">Hair Styling only Non-Bride</th>
+                <th scope="col">Children</th>
+                <th scope="col">Makeup Bride</th>
+              <th scope="col">Hair Bride</th>
+              <th scope="col">Hair Setting only Bride</th>
+                <th scope="col">Hair Styling only Bride</th>
+                <th scope="col">Makeup Non-Wedding</th>
+              <th scope="col">Hair Non-Wedding</th>
+              <th scope="col">Hair Setting only Non-Wedding</th>
+                <th scope="col">Hair Styling only Non-Wedding</th>
+                <th scope="col">Cash/Check Collected</th>
+                <th scope="col">Quickpay/Zelle Collected</th>
+                <th scope="col">Venmo Collected</th>
+                <th scope="col">Paypal Collected</th>
+                <th scope="col">No Payment Collected</th>
+                <th scope="col">Ammount Collected</th>
+                <th scope="col">Travel Distance</th>
+                <th scope="col">Comments</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+        
+            </tr>
+            </thead>
+            <tbody id = "responsesTableBody">
+                <div id="showResponseRows">
+               
+             </div>
+              </tbody>
+                </table>
+                    </div>
+            </div>
+        
+</body>
+    
 </html>
