@@ -1002,6 +1002,98 @@ function deleteResponseBtn() {
     database_ref.child('artists/' + artistId).child('responses/' +responseId).remove()
 }
 
+
+function getPaySummary(){
+    var database_ref = database.ref()
+    var payPeriodStartDate = $("#payPeriodStartDate").val()
+    var payPeriodEndDate = $("#payPeriodEndDate").val()
+    console.log("Start date: " +payPeriodStartDate)
+    console.log("End date: " +payPeriodEndDate)
+    
+    database_ref.child('artists').once('value',
+                                      function(AllRecords){
+        $("#paySummaryTableBody").empty()
+        AllRecords.forEach(
+            function(CurrentArtist){
+                var artistId = CurrentArtist.val().artistID
+                var brideHairPay = CurrentArtist.val().bride_hair_pay
+                var brideHairSettingPay = CurrentArtist.val().bride_hair_setting_pay
+                var brideHairStylingPay = CurrentArtist.val().bride_hair_styling_pay
+                var brideMakeupPay = CurrentArtist.val().bride_makeup_pay
+                var childrenPay = CurrentArtist.val().children_pay
+                var firstName = CurrentArtist.val().first_name
+                var lastName = CurrentArtist.val().last_name
+                var nonBrideHairPay = CurrentArtist.val().nonBride_hair_pay
+                var nonBrideHairSettingPay = CurrentArtist.val().nonBride_hair_setting_pay
+                var nonBrideHairStylingPay = CurrentArtist.val().nonBride_hair_styling_pay
+                var nonBrideMakeupPay = CurrentArtist.val().nonBride_makeup_pay
+                var nonWeddingHairPay = CurrentArtist.val().nonWedding_hair_pay
+                var nonWeddingHairSettingPay = CurrentArtist.val().nonWedding_hair_setting_pay
+                var nonWeddingHairStylingPay = CurrentArtist.val().nonWedding_hair_styling_pay
+                var nonWeddingMakeupPay = CurrentArtist.val().nonWedding_makeup_pay
+                //Get all responses between dates for current artist
+                
+                database.ref('artists/' + artistId).child('responses').orderByChild('dateOfEvent').startAt(payPeriodStartDate).endAt(payPeriodEndDate).on('value',
+                    function(AllRecords){
+                    
+                    var pay = 0
+                    AllRecords.forEach(
+                        function(CurrentRecord){
+                            console.log(artistId+", "+CurrentRecord.val().dateOfEvent)
+                            var nonBrideMakeup = CurrentRecord.val().nonBrideMakeup
+                            var nonBrideHair = CurrentRecord.val().nonBrideHair
+                            var nonBrideHairSetting = CurrentRecord.val().nonBrideHairSetting
+                            var nonBrideHairStyling = CurrentRecord.val().nonBrideHairStyling
+                            var children = CurrentRecord.val().children
+                            var brideMakeup = CurrentRecord.val().brideMakeup
+                            var brideHair = CurrentRecord.val().brideHair
+                            var brideHairSetting = CurrentRecord.val().brideHairSetting
+                            var brideHairStyling = CurrentRecord.val().brideHairStyling
+                            var nonWeddingMakeup = CurrentRecord.val().nonWeddingMakeup
+                            var nonWeddingHair = CurrentRecord.val().nonWeddingHair
+                            var nonWeddingHairSetting = CurrentRecord.val().nonWeddingHairSetting
+                            var nonWeddingHairStyling = CurrentRecord.val().nonWeddingHairStyling
+                            var travelMiles = CurrentRecord.val().travelMiles
+                            pay += (brideHairPay*brideHair) + (brideHairSettingPay*brideHairSetting) + (brideHairStylingPay*brideHairStyling) + (brideMakeupPay*brideMakeup) + (childrenPay*children) + (nonBrideHairPay*nonBrideHair) + (nonBrideHairSettingPay*nonBrideHairSetting) + (nonBrideHairStylingPay*nonBrideHairStyling) + (nonBrideMakeupPay*nonBrideMakeup) + (nonWeddingHairPay*nonWeddingHair) + (nonWeddingHairSettingPay*nonWeddingHairSetting) + (nonWeddingHairStylingPay*nonWeddingHairStyling) + (nonWeddingMakeupPay*nonWeddingMakeup) + (0.55*travelMiles)
+                            
+                        }
+                    )
+                    var td1 = document.createElement('td')
+                    var td2 = document.createElement('td')
+                            
+                    td1.innerHTML = firstName + " " + lastName
+                    td2.innerHTML = pay
+                            
+                    var trow = document.createElement('tr')
+                            
+                    trow.appendChild(td1)
+                    trow.appendChild(td2)
+                            
+                    var tbody = document.getElementById('paySummaryTableBody')
+
+                    tbody.appendChild(trow)
+                })
+                
+            }
+        )
+    })
+    
+    
+//    database.ref('responses').orderByChild('dateOfEvent').startAt(payPeriodStartDate).endAt(payPeriodEndDate).on('value',
+//        function(AllRecords){
+//        $("#clientTableBody").empty()
+//        AllRecords.forEach(
+//            function(CurrentRecord){
+//                    
+//                   console.log(CurrentRecord.val().dateOfEvent)
+//            }
+//        )
+//    })
+//    
+    
+    //database_ref.child('artists/' + response_data.artist).child('responses/' +response_data.responseID ).set(response_data)
+}
+
 function eventInfoNext() {
     $("#eventInfo-section").hide()
     $("#NonBride-section").show()
