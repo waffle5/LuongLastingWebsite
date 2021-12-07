@@ -1078,20 +1078,6 @@ function getPaySummary(){
         )
     })
     
-    
-//    database.ref('responses').orderByChild('dateOfEvent').startAt(payPeriodStartDate).endAt(payPeriodEndDate).on('value',
-//        function(AllRecords){
-//        $("#clientTableBody").empty()
-//        AllRecords.forEach(
-//            function(CurrentRecord){
-//                    
-//                   console.log(CurrentRecord.val().dateOfEvent)
-//            }
-//        )
-//    })
-//    
-    
-    //database_ref.child('artists/' + response_data.artist).child('responses/' +response_data.responseID ).set(response_data)
 }
 
 function eventInfoNext() {
@@ -1308,7 +1294,7 @@ function login () {
     //Redirects logged in users to the main page
   auth.onAuthStateChanged(user => {
   if(user) {
-    window.location = 'MainPage.html'; //After successful login, user will be redirected to home.html
+    window.location = 'PaySummary.html'; //After successful login, user will be redirected to home.html
   }
 });  
     
