@@ -49,14 +49,33 @@
     
            <div class = "container-fluid">
              <h2>Pay Summary</h2>
-            <table border="1px solid black">
-                <tr> <!-- Title Row -->
-                    <!-- Title header -->
-                    <th>Services Name</th> 
-                    <th>Amount of Services</th>
-                    <th>Total</th>
-                </tr>
-            </table>
+    
+               
+               <div class="input-group mb-3">
+                   <span class="input-group-text">Pay Period Start Date</span>
+                  <input type="date" class="form-control" id="payPeriodStartDate">
+                  <span class="input-group-text">Pay Period End Date</span>
+                  <input type="date" class="form-control" id="payPeriodEndDate">
+                </div>
+               
+               <button onclick="getPaySummary()" type="button" class="btn btn-primary">Calculate Pay</button>
+               
+            <div class = "table-responsive">   
+   
+        <br><table id = "clientTable" class="table table-bordered table-s">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">Artist</th>
+              <th scope="col">Pay</th>     
+            </tr>
+            </thead>
+            <tbody id = "paySummaryTableBody">
+                <div id="paySummaryRows">
+               
+             </div>
+              </tbody>
+        </table>
+             </div>
         </div>
     </body>
 </html>

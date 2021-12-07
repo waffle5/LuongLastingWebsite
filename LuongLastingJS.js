@@ -114,7 +114,7 @@ function saveResponsev1() {
         venmo: $("#venmo").prop("checked"),
         paypal: $("#paypal").prop("checked"),
         noPayment: $("#noPayment").prop("checked"),
-        ammountColleted: $("#ammountColleted").val(),
+        amountColleted: $("#ammountColleted").val(),
         travelMiles: $("#travelMiles").val(),
         comments: $("#comments").val()
     }
@@ -276,11 +276,43 @@ function populateClientList() {
 }
 
 function populateDropDowns(){
+    populateClientListv3()
+    populateArtistListv2()
+}
+
+function loadResponsesPage(){
     populateClientListv2()
     populateArtistList()
+    getAllResponses()
 }
 
 function populateClientListv2() {
+    var database_ref = database.ref()
+    
+    var select = document.getElementById("client");
+    var selectEdit = document.getElementById("edit-client");
+    
+    database_ref.child('clients').once('value',
+                                      function(AllRecords){
+        AllRecords.forEach(
+            function(CurrentRecord){
+                var option = document.createElement("option");
+                var optionEdit = document.createElement("option");
+                var fullName = CurrentRecord.val().first_name + " " + CurrentRecord.val().last_name
+                option.value = CurrentRecord.val().clientID
+                option.text = fullName
+                optionEdit.value = CurrentRecord.val().clientID
+                optionEdit.text = fullName
+                select.appendChild(option)
+                selectEdit.appendChild(optionEdit)
+            }
+        )
+    })
+    
+}
+
+
+function populateClientListv3() {
     var database_ref = database.ref()
     
     var select = document.getElementById("client");
@@ -298,6 +330,52 @@ function populateClientListv2() {
         )
     })
     
+}
+
+function populateArtistList() {
+    var database_ref = database.ref()
+    
+    var select = document.getElementById("artist");
+    var selectEdit = document.getElementById("edit-artist");
+    
+    database_ref.child('artists').once('value',
+                                      function(AllRecords){
+        AllRecords.forEach(
+            function(CurrentRecord){
+                var option = document.createElement("option");
+                var optionEdit = document.createElement("option");
+                var fullName = CurrentRecord.val().first_name + " " + CurrentRecord.val().last_name
+                option.value = CurrentRecord.val().artistID
+                option.text = fullName
+                optionEdit.value = CurrentRecord.val().artistID
+                optionEdit.text = fullName
+                select.appendChild(option)
+                selectEdit.appendChild(optionEdit)
+            }
+        )
+    })
+
+}
+
+function populateArtistListv2() {
+    var database_ref = database.ref()
+    
+    var select = document.getElementById("artist");
+    
+    database_ref.child('artists').once('value',
+                                      function(AllRecords){
+        AllRecords.forEach(
+            function(CurrentRecord){
+                var option = document.createElement("option");
+                var optionEdit = document.createElement("option");
+                var fullName = CurrentRecord.val().first_name + " " + CurrentRecord.val().last_name
+                option.value = CurrentRecord.val().artistID
+                option.text = fullName
+                select.appendChild(option)
+            }
+        )
+    })
+
 }
 
 function getAllArtist() {
@@ -592,15 +670,449 @@ function deleteClientBtn() {
     database_ref.child('clients/' + id).remove()
 }
 
+function getAllResponses () {
+       
+        database.ref('responses').on('value',
+                                function(AllRecords){
+        $("#responsesTableBody").empty()
+        AllRecords.forEach(
+            function(CurrentRecord){
+                var email = CurrentRecord.val().email
+                var responseId = CurrentRecord.val().responseID
+                var clientId = CurrentRecord.val().client
+                var artistId = CurrentRecord.val().artist
+                var dateOfEvent = CurrentRecord.val().dateOfEvent
+                var nonBrideMakeup = CurrentRecord.val().nonBrideMakeup
+                var nonBrideHair = CurrentRecord.val().nonBrideHair
+                var nonBrideHairSetting = CurrentRecord.val().nonBrideHairSetting
+                var nonBrideHairStyling = CurrentRecord.val().nonBrideHairStyling
+                var children = CurrentRecord.val().children
+                var brideMakeup = CurrentRecord.val().brideMakeup
+                var brideHair = CurrentRecord.val().brideHair
+                var brideHairSetting = CurrentRecord.val().brideHairSetting
+                var brideHairStyling = CurrentRecord.val().brideHairStyling
+                var nonWeddingMakeup = CurrentRecord.val().nonWeddingMakeup
+                var nonWeddingHair = CurrentRecord.val().nonWeddingHair
+                var nonWeddingHairSetting = CurrentRecord.val().nonWeddingHairSetting
+                var nonWeddingHairStyling = CurrentRecord.val().nonWeddingHairStyling
+                var cashCheck = CurrentRecord.val().cashCheck
+                var quickPayZelle = CurrentRecord.val().quickPayZelle
+                var venmo = CurrentRecord.val().venmo
+                var paypal = CurrentRecord.val().paypal
+                var noPayment = CurrentRecord.val().noPayment
+                var ammountCollected = CurrentRecord.val().amountColleted
+                var travelMiles = CurrentRecord.val().travelMiles
+                var comments = CurrentRecord.val().comments
+                
+                var td3 = document.createElement('td')
+                var td4 = document.createElement('td')
+                var td5 = document.createElement('td')
+                var td6 = document.createElement('td') 
+                var td7 = document.createElement('td')
+                var td8 = document.createElement('td')
+                var td9 = document.createElement('td')
+                var td10 = document.createElement('td') 
+                var td11 = document.createElement('td')
+                var td12 = document.createElement('td')
+                var td13 = document.createElement('td')
+                var td14 = document.createElement('td')
+                var td15 = document.createElement('td')
+                var td16 = document.createElement('td')
+                var td17 = document.createElement('td')
+                var td18 = document.createElement('td')
+                var td19 = document.createElement('td')
+                var td20 = document.createElement('td')
+                var td21 = document.createElement('td')
+                var td22 = document.createElement('td')
+                var td23 = document.createElement('td')
+                var td24 = document.createElement('td')
+                var td25 = document.createElement('td')
+                var td26 = document.createElement('td')
+                var td27 = document.createElement('td')
+                var td28 = document.createElement('td')
+                var td29 = document.createElement('td')
+                var td30 = document.createElement('td')
+                
+                td24.innerHTML = '<span class="response-data-email">'+email+'</span>'
+                
+                var database_ref = database.ref()
+                
+                var trow = document.createElement('tr')
+                
+                trow.appendChild(td24)
+                
+                database_ref.child('artists').child(artistId).get().then((snapshot) => {
+                    if (snapshot.exists()) {
+                        var artistName = snapshot.val().first_name + " " + snapshot.val().last_name;
+                        var td1 = document.createElement('td')
+                        td1.innerHTML = '<span class="response-data-artistName">'+artistName+'</span>'
+                        trow.appendChild(td1)
+                        
+                        database_ref.child('clients').child(clientId).get().then((snapshot) => {
+                            if (snapshot.exists()) {
+                                var clientName = snapshot.val().first_name + " " + snapshot.val().last_name;
+                                var td2 = document.createElement('td')
+                                td2.innerHTML = '<span class="response-data-clientName">'+clientName+'</span>'
+                                trow.appendChild(td2)
+                                td3.innerHTML = '<span class="response-data-dateOfEvent">'+dateOfEvent+'</span>'
+                                td4.innerHTML = '<span class="response-data-nonBrideMakeup">'+nonBrideMakeup+'</span>'
+                                td5.innerHTML = '<span class="response-data-nonBrideHair">'+nonBrideHair+'</span>'
+                                td6.innerHTML = '<span class="response-data-nonBrideHairSetting">'+nonBrideHairSetting+'</span>'
+                                td7.innerHTML = '<span class="response-data-nonBrideHairStyling">'+nonBrideHairStyling+'</span>'
+                                td8.innerHTML = '<span class="response-data-children">'+children+'</span>'
+                                td9.innerHTML = '<span class="response-data-brideMakeup">'+brideMakeup+'</span>'
+                                td10.innerHTML = '<span class="response-data-brideHair">'+brideHair+'</span>'
+                                td11.innerHTML = '<span class="response-data-brideHairSetting">'+brideHairSetting+'</span>'
+                                td12.innerHTML = '<span class="response-data-brideHairStyling">'+brideHairStyling+'</span>'
+                                td13.innerHTML = '<span class="response-data-nonWeddingMakeup">'+nonWeddingMakeup+'</span>'
+                                td14.innerHTML = '<span class="response-data-nonWeddingHair">'+nonWeddingHair+'</span>'
+                                td15.innerHTML = '<span class="response-data-nonWeddingHairSetting">'+nonWeddingHairSetting+'</span>'
+                                td16.innerHTML = '<span class="response-data-nonWeddingHairStyling">'+nonWeddingHairStyling+'</span>'
+                                
+                                td25.innerHTML = '<span class="response-data-cashCheck">'+cashCheck+'</span>'
+                                td26.innerHTML = '<span class="response-data-quickPayZelle">'+quickPayZelle+'</span>'
+                                td27.innerHTML = '<span class="response-data-venmo">'+venmo+'</span>'
+                                td28.innerHTML = '<span class="response-data-paypal">'+paypal+'</span>'
+                                td29.innerHTML = '<span class="response-data-noPayment">'+noPayment+'</span>'
+                                td30.innerHTML = '<span class="response-data-ammountCollected">'+ammountCollected+'</span>'
+                                
+                                                
+                                td17.innerHTML = '<span class="response-data-travelMiles">'+travelMiles+'</span>'
+                                td18.innerHTML = '<span class="response-data-comments">'+comments+'</span>'
+                                
+                                td19.innerHTML = '<button type="button" class="btn btn-primary edit-response-button" data-bs-toggle="modal" data-bs-target="#editResponseModal">Edit Response</button>'
+                                td20.innerHTML = '<button type="button" class="btn btn-primary delete-response-button" data-bs-toggle="modal" data-bs-target="#deleteResponseModal">Delete Response</button>'
+                                
+                                td21.innerHTML = '<span class="response-data-responseId">'+responseId+'</span>'
+                                td22.innerHTML = '<span class="response-data-clientId">'+clientId+'</span>'
+                                td23.innerHTML = '<span class="response-data-artistId">'+artistId+'</span>'
+                                
+                                td21.style.display = "none"
+                                td22.style.display = "none"
+                                td23.style.display = "none"
+                                
+                                trow.appendChild(td3)
+                                trow.appendChild(td4)
+                                trow.appendChild(td5)
+                                trow.appendChild(td6)
+                                trow.appendChild(td7)
+                                trow.appendChild(td8)
+                                trow.appendChild(td9)
+                                trow.appendChild(td10)
+                                trow.appendChild(td11)
+                                trow.appendChild(td12)
+                                trow.appendChild(td13)
+                                trow.appendChild(td14)
+                                trow.appendChild(td15)
+                                trow.appendChild(td16)
+                                trow.appendChild(td25)
+                                trow.appendChild(td26)
+                                trow.appendChild(td27)
+                                trow.appendChild(td28)
+                                trow.appendChild(td29)
+                                trow.appendChild(td30)
+                                trow.appendChild(td17)
+                                trow.appendChild(td18)
+                                trow.appendChild(td19)
+                                trow.appendChild(td20)
+                                trow.appendChild(td21)
+                                trow.appendChild(td22)
+                                trow.appendChild(td23)
+                                var tbody = document.getElementById('responsesTableBody')
+
+                                tbody.appendChild(trow)
+
+                              } else {
+                                console.log("No data available");
+                              }
+                            }).catch((error) => {
+                              console.error(error);
+                            });
+                        
+                      } else {
+                        console.log("No data available");
+                      }
+                    }).catch((error) => {
+                      console.error(error);
+                    });
+            
+               
+                   
+            }
+        )
+    })
+}
+
+
+//populate edit response popup with response information
+$(document).on("click",".edit-response-button", function(){
+    $btn = $(this);
+    $tr = $btn.closest('tr');
+    
+    var responseId = $tr.find('.response-data-responseId').text();
+    
+    var email = $tr.find('.response-data-email').text();
+    var artist = $tr.find('.response-data-artistId').text();
+    var client = $tr.find('.response-data-clientId').text();
+    var dateOfEvent = $tr.find('.response-data-dateOfEvent').text();
+    
+    var nonBrideMakeup = $tr.find('.response-data-nonBrideMakeup').text();
+    var nonBrideHair = $tr.find('.response-data-nonBrideHair').text();
+    var nonBrideHairSetting = $tr.find('.response-data-nonBrideHairSetting').text();
+    var nonBrideHairStyling = $tr.find('.response-data-nonBrideHairStyling').text();
+    
+    var children = $tr.find('.response-data-children').text();
+    
+    var brideMakeup = $tr.find('.response-data-brideMakeup').text();
+    var brideHair = $tr.find('.response-data-brideHair').text();
+    var brideHairSetting = $tr.find('.response-data-brideHairSetting').text();
+    var brideHairStyling = $tr.find('.response-data-brideHairStyling').text();
+    
+    var nonWeddingMakeup = $tr.find('.response-data-nonBrideMakeup').text();
+    var nonWeddingHair = $tr.find('.response-data-nonBrideHair').text();
+    var nonWeddingHairSetting = $tr.find('.response-data-nonBrideHairSetting').text();
+    var nonWeddingHairStyling = $tr.find('.response-data-nonBrideHairStyling').text()
+    
+    var cashCheck = $tr.find('.response-data-cashCheck').text()
+    var quickPayZelle = $tr.find('.response-data-quickPayZelle').text()
+    var venmo = $tr.find('.response-data-venmo').text()
+    var paypal = $tr.find('.response-data-paypal').text()
+    var noPayment = $tr.find('.response-data-noPayment').text()
+    var ammountCollected = $tr.find('.response-data-ammountCollected').text()
+    
+    var travelMiles = $tr.find('.response-data-travelMiles').text();
+    var comments = $tr.find('.response-data-comments').text();
+
+    $("#edit-responseId").val(responseId)
+    
+    $("#edit-inputEmail").val(email)
+    $("#edit-artist").val(artist).change()
+    $("#edit-client").val(client).change()
+    $("#edit-dateOfEvent").val(dateOfEvent)
+    
+    $("#edit-nonBrideMakeup").val(nonBrideMakeup)
+    $("#edit-nonBrideHair").val(nonBrideHair)
+    $("#edit-nonBrideHairSetting").val(nonBrideHairSetting)
+    $("#edit-nonBrideHairStyling").val(nonBrideHairStyling)
+    
+    $("#edit-brideMakeup").val(brideMakeup)
+    $("#edit-brideHair").val(brideHair)
+    $("#edit-brideHairSetting").val(brideHairSetting)
+    $("#edit-brideHairSetting").val(brideHairSetting)
+    
+    $("#edit-nonWeddingMakeup").val(nonWeddingMakeup)
+    $("#edit-nonWeddingHair").val(nonWeddingHair)
+    $("#edit-nonWeddingHairSetting").val(nonWeddingHairSetting)
+    $("#edit-nonWeddingHairStyling").val(nonWeddingHairStyling)
+    
+    if (cashCheck == "true") {
+        $("#edit-cashCheck").attr("checked", true)
+    } else {
+        $("#edit-cashCheck").attr("checked", false)
+    }
+    
+    if (quickPayZelle == "true") {
+        $("#edit-quickPayZelle").attr("checked", true)
+    } else {
+        $("#edit-quickPayZelle").attr("checked", false)
+    }
+
+    if (venmo == "true") {
+        $("#edit-venmo").attr("checked", true)
+    } else {
+        $("#edit-venmo").attr("checked", false)
+    }
+    
+    if (paypal == "true") {
+        $("#edit-paypal").attr("checked", true)
+    } else {
+        $("#edit-paypal").attr("checked", false)
+    }
+    
+    if (noPayment == "true") {
+        $("#edit-noPayment").attr("checked", true)
+    } else {
+        $("#edit-noPayment").attr("checked", false)
+    }
+    
+    $("#edit-ammountColleted").val(ammountCollected)
+    $("#edit-travelMiles").val(travelMiles)
+    $("#edit-comments").val(comments)
+    
+})
+
+//save edited changes for responses
+function editResponseBtn() {
+    
+    var database_ref = database.ref()
+    
+    var response_data = {
+        responseID: $("#edit-responseId").val(),
+        email: $("#edit-inputEmail").val(),
+        artist: $("#edit-artist").val(),
+        client: $("#edit-client").val(),
+        dateOfEvent: $("#edit-dateOfEvent").val(),
+        nonBrideMakeup: $("#edit-nonBrideMakeup").val(),
+        nonBrideHair: $("#edit-nonBrideHair").val(),
+        nonBrideHairSetting: $("#edit-nonBrideHairSetting").val(),
+        nonBrideHairStyling: $("#edit-nonBrideHairStyling").val(),
+        children: $("#edit-children").val(),
+        brideMakeup: $("#edit-brideMakeup").val(),
+        brideHair: $("#edit-brideHair").val(),
+        brideHairSetting: $("#edit-brideHairSetting").val(),
+        brideHairStyling: $("#edit-brideHairStyling").val(),
+        nonWeddingMakeup: $("#edit-nonWeddingMakeup").val(),
+        nonWeddingHair: $("#edit-nonWeddingHair").val(),
+        nonWeddingHairSetting: $("#edit-nonWeddingHairSetting").val(),
+        nonWeddingHairStyling: $("#edit-nonWeddingHairStyling").val(),
+        cashCheck: $("#edit-cashCheck").prop("checked"),
+        quickPayZelle: $("#edit-quickPayZelle").prop("checked"),
+        venmo: $("#edit-venmo").prop("checked"),
+        paypal: $("#edit-paypal").prop("checked"),
+        noPayment: $("#edit-noPayment").prop("checked"),
+        amountColleted: $("#edit-ammountColleted").val(),
+        travelMiles: $("#edit-travelMiles").val(),
+        comments: $("#edit-comments").val()
+    }
+    database_ref.child('responses/' + response_data.responseID).set(response_data)
+    database_ref.child('artists/' + response_data.artist).child('responses/' +response_data.responseID ).set(response_data)
+
+}
+
+//delete response
+$(document).on("click",".delete-response-button", function(){
+    $btn = $(this);
+    $tr = $btn.closest('tr');
+    var artistName = $tr.find('.response-data-artistName').text();
+    var artistId = $tr.find('.response-data-artistId').text();
+    var clientName = $tr.find('.response-data-clientName').text();
+    var dateOfEvent = $tr.find('.response-data-dateOfEvent').text();
+    var responseId = $tr.find('.response-data-responseId').text();
+    $("#delete_response_id").val(responseId)
+    $("#delete_response_artist_id").val(artistId)
+    
+    $("#deleteResponseModalBody").text("Are you sure you want to delete " + artistName + "'s service on "  + dateOfEvent + " for "+clientName+ "?")   
+})
+
+function deleteResponseBtn() {
+    var database_ref = database.ref()
+    var responseId = $("#delete_response_id").val()
+    var artistId = $("#delete_response_artist_id").val()
+    database_ref.child('responses/' + responseId).remove()
+    database_ref.child('artists/' + artistId).child('responses/' +responseId).remove()
+}
+
+
+function getPaySummary(){
+    var database_ref = database.ref()
+    var payPeriodStartDate = $("#payPeriodStartDate").val()
+    var payPeriodEndDate = $("#payPeriodEndDate").val()
+    console.log("Start date: " +payPeriodStartDate)
+    console.log("End date: " +payPeriodEndDate)
+    
+    database_ref.child('artists').once('value',
+                                      function(AllRecords){
+        $("#paySummaryTableBody").empty()
+        AllRecords.forEach(
+            function(CurrentArtist){
+                var artistId = CurrentArtist.val().artistID
+                var brideHairPay = CurrentArtist.val().bride_hair_pay
+                var brideHairSettingPay = CurrentArtist.val().bride_hair_setting_pay
+                var brideHairStylingPay = CurrentArtist.val().bride_hair_styling_pay
+                var brideMakeupPay = CurrentArtist.val().bride_makeup_pay
+                var childrenPay = CurrentArtist.val().children_pay
+                var firstName = CurrentArtist.val().first_name
+                var lastName = CurrentArtist.val().last_name
+                var nonBrideHairPay = CurrentArtist.val().nonBride_hair_pay
+                var nonBrideHairSettingPay = CurrentArtist.val().nonBride_hair_setting_pay
+                var nonBrideHairStylingPay = CurrentArtist.val().nonBride_hair_styling_pay
+                var nonBrideMakeupPay = CurrentArtist.val().nonBride_makeup_pay
+                var nonWeddingHairPay = CurrentArtist.val().nonWedding_hair_pay
+                var nonWeddingHairSettingPay = CurrentArtist.val().nonWedding_hair_setting_pay
+                var nonWeddingHairStylingPay = CurrentArtist.val().nonWedding_hair_styling_pay
+                var nonWeddingMakeupPay = CurrentArtist.val().nonWedding_makeup_pay
+                //Get all responses between dates for current artist
+                
+                database.ref('artists/' + artistId).child('responses').orderByChild('dateOfEvent').startAt(payPeriodStartDate).endAt(payPeriodEndDate).on('value',
+                    function(AllRecords){
+                    
+                    var pay = 0
+                    AllRecords.forEach(
+                        function(CurrentRecord){
+                            console.log(artistId+", "+CurrentRecord.val().dateOfEvent)
+                            var nonBrideMakeup = CurrentRecord.val().nonBrideMakeup
+                            var nonBrideHair = CurrentRecord.val().nonBrideHair
+                            var nonBrideHairSetting = CurrentRecord.val().nonBrideHairSetting
+                            var nonBrideHairStyling = CurrentRecord.val().nonBrideHairStyling
+                            var children = CurrentRecord.val().children
+                            var brideMakeup = CurrentRecord.val().brideMakeup
+                            var brideHair = CurrentRecord.val().brideHair
+                            var brideHairSetting = CurrentRecord.val().brideHairSetting
+                            var brideHairStyling = CurrentRecord.val().brideHairStyling
+                            var nonWeddingMakeup = CurrentRecord.val().nonWeddingMakeup
+                            var nonWeddingHair = CurrentRecord.val().nonWeddingHair
+                            var nonWeddingHairSetting = CurrentRecord.val().nonWeddingHairSetting
+                            var nonWeddingHairStyling = CurrentRecord.val().nonWeddingHairStyling
+                            var travelMiles = CurrentRecord.val().travelMiles
+                            pay += (brideHairPay*brideHair) + (brideHairSettingPay*brideHairSetting) + (brideHairStylingPay*brideHairStyling) + (brideMakeupPay*brideMakeup) + (childrenPay*children) + (nonBrideHairPay*nonBrideHair) + (nonBrideHairSettingPay*nonBrideHairSetting) + (nonBrideHairStylingPay*nonBrideHairStyling) + (nonBrideMakeupPay*nonBrideMakeup) + (nonWeddingHairPay*nonWeddingHair) + (nonWeddingHairSettingPay*nonWeddingHairSetting) + (nonWeddingHairStylingPay*nonWeddingHairStyling) + (nonWeddingMakeupPay*nonWeddingMakeup) + (0.55*travelMiles)
+                            
+                        }
+                    )
+                    var td1 = document.createElement('td')
+                    var td2 = document.createElement('td')
+                            
+                    td1.innerHTML = firstName + " " + lastName
+                    td2.innerHTML = pay
+                            
+                    var trow = document.createElement('tr')
+                            
+                    trow.appendChild(td1)
+                    trow.appendChild(td2)
+                            
+                    var tbody = document.getElementById('paySummaryTableBody')
+
+                    tbody.appendChild(trow)
+                })
+                
+            }
+        )
+    })
+    
+    
+//    database.ref('responses').orderByChild('dateOfEvent').startAt(payPeriodStartDate).endAt(payPeriodEndDate).on('value',
+//        function(AllRecords){
+//        $("#clientTableBody").empty()
+//        AllRecords.forEach(
+//            function(CurrentRecord){
+//                    
+//                   console.log(CurrentRecord.val().dateOfEvent)
+//            }
+//        )
+//    })
+//    
+    
+    //database_ref.child('artists/' + response_data.artist).child('responses/' +response_data.responseID ).set(response_data)
+}
 
 function eventInfoNext() {
     $("#eventInfo-section").hide()
     $("#NonBride-section").show()
 }
 
+function eventInfoModalNext() {
+    $("#eventInfoModal-section").hide()
+    $("#NonBrideModal-section").show()
+}
+
+
 function nonBridePrev() {
     $("#eventInfo-section").show()
     $("#NonBride-section").hide()
+}
+
+function nonBrideModalPrev() {
+    $("#eventInfoModal-section").show()
+    $("#NonBrideModal-section").hide()
 }
 
 
@@ -609,9 +1121,19 @@ function nonBrideNext() {
     $("#bride-section").show()
 }
 
+function nonBrideModalNext() {
+    $("#NonBrideModal-section").hide()
+    $("#brideModal-section").show()
+}
+
 function bridePrev() {
     $("#NonBride-section").show()
     $("#bride-section").hide()
+}
+
+function brideModalPrev() {
+    $("#NonBrideModal-section").show()
+    $("#brideModal-section").hide()
 }
 
 function brideNext(){
@@ -619,9 +1141,19 @@ function brideNext(){
     $("#NonWedding-Section").show()
 }
 
+function brideModalNext(){
+    $("#brideModal-section").hide()
+    $("#NonWeddingModal-Section").show()
+}
+
 function nonNonWedingPrev(){
     $("#bride-section").show()
     $("#NonWedding-Section").hide()
+}
+
+function nonNonWedingModalPrev(){
+    $("#brideModal-section").show()
+    $("#NonWeddingModal-Section").hide()
 }
 
 function nonWeddingNext(){
@@ -629,29 +1161,19 @@ function nonWeddingNext(){
     $("#NonWedding-Section").hide()
 }
 
+function nonWeddingModalNext(){
+    $("#miscModal-section").show()
+    $("#NonWeddingModal-Section").hide()
+}
+
 function miscPrev(){
     $("#misc-section").hide()
     $("#NonWedding-Section").show()
 }
 
-function populateArtistList() {
-    var database_ref = database.ref()
-    
-    var select = document.getElementById("artist");
-    
-    database_ref.child('artists').once('value',
-                                      function(AllRecords){
-        AllRecords.forEach(
-            function(CurrentRecord){
-                var option = document.createElement("option");
-                var fullName = CurrentRecord.val().first_name + " " + CurrentRecord.val().last_name
-                option.value = CurrentRecord.val().artistID
-                option.text = fullName
-                select.appendChild(option)
-            }
-        )
-    })
-
+function miscModalPrev(){
+    $("#miscModal-section").hide()
+    $("#NonWeddingModal-Section").show()
 }
 
 function calcTravel() {
