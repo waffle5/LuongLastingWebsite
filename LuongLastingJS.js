@@ -379,6 +379,7 @@ function populateArtistListv2() {
 }
 
 function getAllArtist() {
+        changeLoginLogoutBtn()
     database.ref('artists').on('value',
                                 function(AllRecords){
         $("#artistTableBody").empty()
@@ -575,7 +576,7 @@ function deleteArtistBtn() {
 
 
 function getAllClients () {
-        
+        changeLoginLogoutBtn()
     
         database.ref('clients').on('value',
                                 function(AllRecords){
@@ -671,7 +672,7 @@ function deleteClientBtn() {
 }
 
 function getAllResponses () {
-       
+       changeLoginLogoutBtn()
         database.ref('responses').on('value',
                                 function(AllRecords){
         $("#responsesTableBody").empty()
@@ -1090,6 +1091,19 @@ function getPaySummary(){
     
 }
 
+function changeLoginLogoutBtn(){
+    firebase.auth().onAuthStateChanged(user => {
+          if (user) {
+            console.log("User is signed in")
+              $("#logoutBtn").show()
+              $("#loginBtn").hide()
+          }
+          else {
+            console.log("No User is signed in")
+          }
+        })
+}
+
 function eventInfoNext() {
     $("#eventInfo-section").hide()
     $("#NonBride-section").show()
@@ -1368,6 +1382,10 @@ function logout(){
     auth.signOut()
     window.location = 'Login.html'
 } 
+
+function loginPage(){
+    window.location = 'Login.html'
+}
 
 
 // Validate Functions
