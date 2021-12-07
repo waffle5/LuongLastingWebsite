@@ -667,7 +667,7 @@ function calcTravel() {
         console.log("Error: " + error.code);
     });
     
-    var travelCost = cost * miles;
+    var travelCost = cost * Number(miles);
 }
 
 function calcServicesAndCosts() {
@@ -695,8 +695,16 @@ function calcServicesAndCosts() {
     var sum = 0;
     
     for(var i = 0; i <= services.length; i++) {
-        sum += (services[i] * servicesCost[i]);
+        sum += (Number(services[i]) * Number(servicesCost[i]));
     }
+}
+
+function calcTotalPay() {
+    var totalPay = Number(calcTravel()) + Number(calcServicesAndCosts());
+    
+    //document.getElementById('displayCalc').innerHTML = totalPay;
+    
+    return totalPay;
 }
 
 /*Calculating the wedding services*/
