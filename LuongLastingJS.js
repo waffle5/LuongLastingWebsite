@@ -1162,6 +1162,59 @@ function miscModalPrev(){
     $("#NonWeddingModal-Section").show()
 }
 
+function calcTravel() {
+    // equalTo() method returns items equal to the specified key or value
+    var database_ref = database.ref('artists/' + addArtist().artistID).child('responses/' + saveResponsev1().responseID).equalTo('travelMiles')
+    
+    var cost = 0.55;
+    // reading the travel miles data from Firebase database
+    var miles = database_ref.on("value", function(snapshot) {
+        var data = snapshot.val();
+        console.log(data);
+    }, function(error) {
+        console.log("Error: " + error.code);
+    });
+    
+    var travelCost = cost * Number(miles);
+}
+
+function calcServicesAndCosts() {
+    var database_ref = database.ref("artists/" + addArtist().artistID).child("responses/" + saveResponsev1().responseID)
+    
+    
+    // reading the data of all services from Firebase
+    var services = database_ref.on("value", function(snapshot) {
+        console.log(snapshot.val());
+    }, function(error) {
+        console.log("Error: " + error.code);
+    });
+    
+    var database_ref2 = database.ref("artists/" + addArtist().artistID)
+    
+    // reading the data of the cost of each service from Firebase
+    var servicesCost = database_ref2.on("value", function(snapshot) {
+        console.log(snapshot.val());
+    }, function(error) {
+        console.log("Error: " + error.code);
+    });
+    
+    /* The formula used for calculating all of the services and their costs is: Σ(service * service cost).
+    The summation is calculated below */
+    var sum = 0;
+    
+    for(var i = 0; i <= services.length; i++) {
+        sum += (Number(services[i]) * Number(servicesCost[i]));
+    }
+}
+
+function calcTotalPay() {
+    var totalPay = Number(calcTravel()) + Number(calcServicesAndCosts());
+    
+    //document.getElementById('displayCalc').innerHTML = totalPay;
+    
+    return totalPay;
+}
+
 /*Calculating the wedding services*/
 function getTotalServices(){
     var arr = document.getElementsByClassName('wedding');
