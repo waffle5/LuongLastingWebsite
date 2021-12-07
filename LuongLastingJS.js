@@ -974,9 +974,19 @@ function editResponseBtn() {
         travelMiles: $("#edit-travelMiles").val(),
         comments: $("#edit-comments").val()
     }
+    resetResponseEditForm()
     database_ref.child('responses/' + response_data.responseID).set(response_data)
     database_ref.child('artists/' + response_data.artist).child('responses/' +response_data.responseID ).set(response_data)
 
+}
+
+function resetResponseEditForm(){
+    $("#eventInfoModal-section").show()
+    $("#NonBrideModal-section").hide()
+    $("#brideModal-section").hide()
+    $("#NonWeddingModal-Section").hide()
+    $("#miscModal-section").hide()
+    
 }
 
 //delete response
@@ -1347,11 +1357,17 @@ function login () {
     //Redirects logged in users to the main page
   auth.onAuthStateChanged(user => {
   if(user) {
-    window.location = 'PaySummary.html'; //After successful login, user will be redirected to home.html
+    window.location = 'PaySummary.html'; //After successful login, user will be redirected to paysummary.html
   }
 });  
     
 }
+
+function logout(){
+    console.log("Logout button pressed")
+    auth.signOut()
+    window.location = 'Login.html'
+} 
 
 
 // Validate Functions
